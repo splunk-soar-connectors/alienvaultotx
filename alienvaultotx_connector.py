@@ -187,8 +187,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
         action_result = self.add_action_result(ActionResult(dict(param)))
 
         domain = param['domain']
-        section = param['section']
-        ret_val, response = self._make_rest_call('/api/v1/indicators/domain/{0}/{1}'.format(domain, section), action_result)
+        ret_val, response = self._make_rest_call('/api/v1/indicators/domain/{0}/general'.format(domain), action_result)
 
         if (phantom.is_fail(ret_val)):
             return action_result.get_status()
@@ -197,10 +196,8 @@ class AlienvaultOtxv2Connector(BaseConnector):
         action_result.add_data(response)
 
         summary = action_result.update_summary({})
-        if len(response) > 0:
-            summary['num_items'] = 1
-        else:
-            summary['num_items'] = 0
+        summary['num_pulses'] = len(response['pulse_info']['pulses'])
+
         return action_result.set_status(phantom.APP_SUCCESS)
 
     def _handle_ip_reputation(self, param):
@@ -219,10 +216,8 @@ class AlienvaultOtxv2Connector(BaseConnector):
         action_result.add_data(response)
 
         summary = action_result.update_summary({})
-        if len(response) > 0:
-            summary['num_items'] = 1
-        else:
-            summary['num_items'] = 0
+        summary['num_pulses'] = len(response['pulse_info']['pulses'])
+
         return action_result.set_status(phantom.APP_SUCCESS)
 
     def _handle_file_reputation(self, param):
@@ -244,10 +239,8 @@ class AlienvaultOtxv2Connector(BaseConnector):
             return action_result.get_status()
 
         summary = action_result.update_summary({})
-        if len(response) > 0:
-            summary['num_items'] = 1
-        else:
-            summary['num_items'] = 0
+        summary['num_pulses'] = len(response['pulse_info']['pulses'])
+
         return action_result.set_status(phantom.APP_SUCCESS)
 
     def _handle_url_reputation(self, param):
@@ -268,13 +261,9 @@ class AlienvaultOtxv2Connector(BaseConnector):
         if (phantom.is_fail(ret_val)):
             return action_result.get_status()
 
-        # resp_dict = json.loads(response)
-        # action_result.add_data(resp_dict)
         summary = action_result.update_summary({})
-        if len(response) > 0:
-            summary['num_items'] = 1
-        else:
-            summary['num_items'] = 0
+        summary['num_pulses'] = len(response['pulse_info']['pulses'])
+
         return action_result.set_status(phantom.APP_SUCCESS)
 
     def handle_action(self, param):
