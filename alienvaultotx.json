@@ -9,7 +9,7 @@
     "product_name": "AlienVault OTX",
     "product_version_regex": ".*",
     "publisher": "Splunk Inc.",
-    "license": "Copyright (c) Splunk Inc., 2019",
+    "license": "Copyright (c) 2019 Splunk Inc.",
     "app_version": "1.0.0",
     "utctime_updated": "2018-10-17T09:49:34.692494Z",
     "package_name": "phantom_alienvaultotx",
