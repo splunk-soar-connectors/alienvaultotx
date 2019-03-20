@@ -8,6 +8,7 @@
 
 # Phantom App imports
 import phantom.app as phantom
+import phantom.utils as utils
 from phantom.base_connector import BaseConnector
 from phantom.action_result import ActionResult
 
@@ -66,7 +67,11 @@ class AlienvaultOtxv2Connector(BaseConnector):
         message = u"Status Code: {0}. Data from server:\n{1}\n".format(status_code,
                 error_text)
 
-        message = message.replace(u'{', u'{{').replace(u'}', u'}}')
+        # Accounting for incorrect API response
+        if self.get_action_identifier() == 'domain_reputation':
+            message = "Parameter 'domain' failed validation"
+        else:
+            message = message.replace(u'{', u'{{').replace(u'}', u'}}')
 
         return RetVal(action_result.set_status(phantom.APP_ERROR, message), None)
 
@@ -191,7 +196,12 @@ class AlienvaultOtxv2Connector(BaseConnector):
         action_result = self.add_action_result(ActionResult(dict(param)))
 
         domain = param['domain']
-        ret_val, response = self._make_rest_call('/api/v1/indicators/domain/{0}/general'.format(domain), action_result)
+
+        # Check if domain is valid
+        if utils.is_domain(domain):
+            ret_val, response = self._make_rest_call('/api/v1/indicators/domain/{0}/general'.format(domain), action_result)
+        else:
+            return action_result.set_status(phantom.APP_ERROR, "Malformed domain")
 
         if (phantom.is_fail(ret_val)):
             return action_result.get_status()

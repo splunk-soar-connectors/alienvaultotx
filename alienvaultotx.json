@@ -8,7 +8,7 @@
     "logo_dark": "logo_openthreatexchange_dark.svg",
     "product_name": "AlienVault OTX",
     "product_version_regex": ".*",
-    "publisher": "Splunk Inc.",
+    "publisher": "Splunk",
     "license": "Copyright (c) 2019 Splunk Inc.",
     "app_version": "1.0.0",
     "utctime_updated": "2018-10-17T09:49:34.692494Z",
@@ -26,8 +26,8 @@
             "order": 0
         },
         "api_key": {
-            "description": "AlienVault OTX API key",
-            "data_type": "string",
+            "description": "AlienVault OTX API Key",
+            "data_type": "password",
             "required": true,
             "value_list": [],
             "default": "",
@@ -70,61 +70,16 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.parameter.domain",
-                    "data_type": "string",
-                    "contains": [
-                        "domain",
-                        "url"
-                    ],
-                    "column_name": "domain",
-                    "column_order": 0,
-                    "example_values": [
-                        "spywaresite.info",
-                        "eingenia.com"
-                    ]
-                },
-                {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 2,
                     "example_values": [
                         "success"
-                    ]
-                },
-                {
-                    "data_path": "action_result.message",
-                    "data_type": "string",
-                    "example_values": [
-                        "Num items: 1"
-                    ]
-                },
-                {
-                    "data_path": "summary.total_objects",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "action_result.data",
-                    "data_type": "string",
-                    "example_values": [
-                        "{\"indicator\": \"spywaresite.info\", \"alexa\": \"http://www.alexa.com/siteinfo/spywaresite.info\", \"whois\": \"http://whois.domaintools.com/spywaresite.info\", \"sections\": [\"general\", \"geo\", \"url_list\", \"passive_dns\", \"malware\", \"whois\", \"http_scans\"], \"pulse_info\": {\"count\": 0, \"pulses\": [], \"references\": []}, \"base_indicator\": {\"indicator\": \"spywaresite.info\", \"description\": \"\", \"title\": \"\", \"access_reason\": \"\", \"access_type\": \"public\", \"content\": \"\", \"type\": \"domain\", \"id\": 2102119}, \"type\": \"domain\"}"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.indicator",
                     "data_type": "string",
                     "example_values": [
-                        "spywaresite.info",
                         "eingenia.com"
                     ]
                 },
@@ -132,7 +87,6 @@
                     "data_path": "action_result.data.*.alexa",
                     "data_type": "string",
                     "example_values": [
-                        "http://www.alexa.com/siteinfo/spywaresite.info",
                         "http://www.alexa.com/siteinfo/eingenia.com"
                     ],
                     "contains": [
@@ -143,7 +97,6 @@
                     "data_path": "action_result.data.*.whois",
                     "data_type": "string",
                     "example_values": [
-                        "http://whois.domaintools.com/spywaresite.info",
                         "http://whois.domaintools.com/eingenia.com"
                     ],
                     "contains": [
@@ -161,71 +114,7 @@
                     "data_path": "action_result.data.*.pulse_info.count",
                     "data_type": "numeric",
                     "example_values": [
-                        0,
-                        4
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.base_indicator.indicator",
-                    "data_type": "string",
-                    "example_values": [
-                        "spywaresite.info",
-                        "eingenia.com"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.base_indicator.description",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.base_indicator.title",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.base_indicator.access_reason",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.base_indicator.access_type",
-                    "data_type": "string",
-                    "example_values": [
-                        "public"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.base_indicator.content",
-                    "data_type": "string"
-                },
-                {
-                    "data_path": "action_result.data.*.base_indicator.type",
-                    "data_type": "string",
-                    "example_values": [
-                        "domain"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.base_indicator.id",
-                    "data_type": "numeric",
-                    "example_values": [
-                        2102119,
-                        1736649513
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.sections",
-                    "data_type": "string",
-                    "example_values": [
-                        "http_scans"
-                    ],
-                    "contains": [
-                        "url"
-                    ]
-                },
-                {
-                    "data_path": "action_result.summary.num_items",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
+                        6
                     ]
                 },
                 {
@@ -249,14 +138,14 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.subscriber_count",
                     "data_type": "numeric",
                     "example_values": [
-                        162
+                        170
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.pulse_info.pulses.*.modified_text",
                     "data_type": "string",
                     "example_values": [
-                        "18 minutes ago "
+                        "29 minutes ago "
                     ]
                 },
                 {
@@ -354,27 +243,21 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.indicator_type_counts.domain",
                     "data_type": "numeric",
                     "example_values": [
-                        1709
-                    ],
-                    "contains": [
-                        "domain"
+                        3319
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.pulse_info.pulses.*.indicator_type_counts.URL",
                     "data_type": "numeric",
                     "example_values": [
-                        3149
+                        6363
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.pulse_info.pulses.*.indicator_type_counts.hostname",
                     "data_type": "numeric",
                     "example_values": [
-                        681
-                    ],
-                    "contains": [
-                        "host name"
+                        1016
                     ]
                 },
                 {
@@ -416,7 +299,7 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.tags",
                     "data_type": "string",
                     "example_values": [
-                        "Emotet"
+                        "botnet"
                     ]
                 },
                 {
@@ -507,7 +390,7 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.observation.subscriber_count",
                     "data_type": "numeric",
                     "example_values": [
-                        13
+                        20
                     ]
                 },
                 {
@@ -595,27 +478,21 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.observation.indicator_type_counts.domain",
                     "data_type": "numeric",
                     "example_values": [
-                        1709
-                    ],
-                    "contains": [
-                        "domain"
+                        3319
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.pulse_info.pulses.*.observation.indicator_type_counts.URL",
                     "data_type": "numeric",
                     "example_values": [
-                        3149
+                        6363
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.pulse_info.pulses.*.observation.indicator_type_counts.hostname",
                     "data_type": "numeric",
                     "example_values": [
-                        681
-                    ],
-                    "contains": [
-                        "host name"
+                        1016
                     ]
                 },
                 {
@@ -650,7 +527,7 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.observation.tags",
                     "data_type": "string",
                     "example_values": [
-                        "Emotet"
+                        "botnet"
                     ]
                 },
                 {
@@ -713,14 +590,14 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.observation.modified",
                     "data_type": "string",
                     "example_values": [
-                        "2019-03-07T18:35:19.636000"
+                        "2019-03-20T20:40:25.275000"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.pulse_info.pulses.*.observation.export_count",
                     "data_type": "numeric",
                     "example_values": [
-                        111
+                        251
                     ]
                 },
                 {
@@ -741,7 +618,7 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.observation.user_subscriber_count",
                     "data_type": "numeric",
                     "example_values": [
-                        149
+                        150
                     ]
                 },
                 {
@@ -762,21 +639,21 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.modified",
                     "data_type": "string",
                     "example_values": [
-                        "2019-03-07T18:35:19.636000"
+                        "2019-03-20T20:40:25.275000"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.pulse_info.pulses.*.export_count",
                     "data_type": "numeric",
                     "example_values": [
-                        111
+                        251
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.pulse_info.pulses.*.indicator_count",
                     "data_type": "numeric",
                     "example_values": [
-                        5577
+                        10736
                     ]
                 },
                 {
@@ -790,28 +667,28 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.indicator_type_counts.FileHash-SHA256",
                     "data_type": "numeric",
                     "example_values": [
-                        183
+                        19
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.pulse_info.pulses.*.indicator_type_counts.FileHash-SHA1",
                     "data_type": "numeric",
                     "example_values": [
-                        3
+                        16
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.pulse_info.pulses.*.observation.indicator_type_counts.FileHash-SHA256",
                     "data_type": "numeric",
                     "example_values": [
-                        183
+                        19
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.pulse_info.pulses.*.observation.indicator_type_counts.FileHash-SHA1",
                     "data_type": "numeric",
                     "example_values": [
-                        3
+                        16
                     ]
                 },
                 {
@@ -833,6 +710,95 @@
                     "data_type": "string",
                     "example_values": [
                         "urlhaus.abuse.ch"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.base_indicator.indicator",
+                    "data_type": "string",
+                    "example_values": [
+                        "eingenia.com"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.base_indicator.description",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.base_indicator.title",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.base_indicator.access_reason",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.base_indicator.access_type",
+                    "data_type": "string",
+                    "example_values": [
+                        "public"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.base_indicator.content",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.base_indicator.type",
+                    "data_type": "string",
+                    "example_values": [
+                        "domain"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.base_indicator.id",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1736649513
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.sections",
+                    "data_type": "string",
+                    "example_values": [
+                        "http_scans"
+                    ]
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "example_values": [
+                        "Num pulses: 5"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.domain",
+                    "data_type": "string",
+                    "example_values": [
+                        "eingenia.com"
+                    ],
+                    "contains": [
+                        "domain"
+                    ]
+                },
+                {
+                    "data_path": "action_result.summary.num_pulses",
+                    "data_type": "numeric",
+                    "example_values": [
+                        5
+                    ]
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
                     ]
                 }
             ],
@@ -868,78 +834,20 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.parameter.ip",
-                    "data_type": "string",
-                    "contains": [
-                        "ip"
-                    ],
-                    "column_name": "ip",
-                    "column_order": 0,
-                    "example_values": [
-                        "8.8.8.8",
-                        "123.4.5.6",
-                        "123.44.55.6"
-                    ]
-                },
-                {
                     "data_path": "action_result.status",
                     "data_type": "string",
-                    "column_name": "status",
-                    "column_order": 1,
                     "example_values": [
                         "success"
                     ]
                 },
                 {
-                    "data_path": "action_result.message",
-                    "data_type": "string",
-                    "example_values": [
-                        "Num items: 24",
-                        "Num items: 1"
-                    ]
-                },
-                {
-                    "data_path": "summary.total_objects",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1,
-                        2
-                    ]
-                },
-                {
-                    "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1,
-                        2
-                    ]
-                },
-                {
-                    "data_path": "action_result.data",
-                    "data_type": "string",
-                    "example_values": [
-                        "{\"postal_code\": null, \"country_code\": \"US\", \"type\": \"IPv4\", \"city\": null, \"indicator\": \"8.8.8.8\", \"whois\": \"http://whois.domaintools.com/8.8.8.8\", \"charset\": 0, \"dma_code\": 0, \"country_name\": \"United States\", \"sections\": [\"general\", \"geo\", \"reputation\", \"url_list\", \"passive_dns\", \"malware\", \"nids_list\", \"http_scans\"], \"flag_title\": \"United States\", \"area_code\": 0, \"pulse_info\": {\"count\": 23, \"pulses\": [{\"pulse_source\": \"web\", \"subscriber_count\": 4, \"modified_text\": \"165 days ago \", \"is_subscribing\": null, \"is_following\": 0, \"vote\": 0, \"id\": \"5b64a2a46b0f9c069b5f3966\", \"industries\": [], \"author\": {\"username\": \"datamatic\", \"is_subscribed\": 0, \"avatar_url\": \"https://otx.alienvault.com/static/img/default.png\", \"is_following\": 0, \"id\": \"45388\"}, \"cloned_from\": null, \"comment_count\": 0, \"follower_count\": 0, \"public\": 1, \"indicator_type_counts\": {\"IPv4\": 1}, \"TLP\": \"white\", \"description\": \"Test pusle that is malicious\", \"tags\": [], \"in_group\": false, \"is_modified\": false, \"upvotes_count\": 0, \"votes_count\": 0, \"targeted_countries\": [], \"groups\": [], \"validator_count\": 0, \"threat_hunter_scannable\": true, \"is_author\": false, \"adversary\": \"APT\", \"name\": \"Googled DNS test\", \"locked\": 0, \"observation\": {\"pulse_source\": \"web\", \"subscriber_count\": 0, \"is_subscribed\": 0, \"author_name\": \"datamatic\", \"is_subscribing\": null, \"references\": [], \"vote\": 0, \"id\": \"5b64a2a46b0f9c069b5f3966\", \"industries\": [], \"tags\": [], \"comment_count\": 0, \"avatar_url\": \"https://otx.alienvault.com/static/img/default.png\", \"follower_count\": 0, \"public\": 1, \"revision\": 1, \"indicator_type_counts\": {\"IPv4\": 1}, \"description\": \"Test pusle that is malicious\", \"cloned_from\": null, \"upvotes_count\": 0, \"votes_count\": 0, \"targeted_countries\": [], \"groups\": [], \"validator_count\": 0, \"adversary\": \"APT\", \"tlp\": \"white\", \"locked\": 0, \"name\": \"Googled DNS test\", \"created\": \"2018-08-03T18:44:52.954000\", \"downvotes_count\": 0, \"modified\": \"2018-08-03T18:44:52.954000\", \"export_count\": 0, \"extract_source\": [], \"is_following\": 0, \"author_id\": 45388, \"user_subscriber_count\": 4}, \"created\": \"2018-08-03T18:44:52.954000\", \"downvotes_count\": 0, \"modified\": \"2018-08-03T18:44:52.954000\", \"export_count\": 0, \"indicator_count\": 1, \"references\": []}, {\"pulse_source\": \"api\", \"subscriber_count\": 3, \"modified_text\": \"275 days ago \", \"is_subscribing\": null, \"is_following\": 0, \"vote\": 0, \"id\": \"5ad2f7088b6a722520f97dc0\", \"industries\": [], \"author\": {\"username\": \"g1514400\", \"is_subscribed\": 0, \"avatar_url\": \"https://otx.alienvault.com/static/img/default.png\", \"is_following\": 0, \"id\": \"57017\"}, \"cloned_from\": null, \"comment_count\": 0, \"follower_count\": 0, \"public\": 1, \"indicator_type_counts\": {\"IPv4\": 1}, \"TLP\": \"green\", \"description\": \"\", \"tags\": [], \"in_group\": false, \"is_modified\": false, \"upvotes_count\": 0, \"votes_count\": 0, \"targeted_countries\": [], \"groups\": [], \"validator_count\": 0, \"threat_hunter_scannable\": true, \"is_author\": false, \"adversary\": \"\", \"name\": \"Test Pulse\", \"locked\": 0, \"observation\": {\"pulse_source\": \"api\", \"subscriber_count\": 2, \"is_subscribed\": 0, \"author_name\": \"g1514400\", \"is_subscribing\": null, \"references\": [], \"vote\": 0, \"id\": \"5ad2f7088b6a722520f97dc0\", \"industries\": [], \"tags\": [], \"comment_count\": 0, \"avatar_url\": \"https://otx.alienvault.com/static/img/default.png\", \"follower_count\": 0, \"public\": 1, \"revision\": 1, \"indicator_type_counts\": {\"IPv4\": 1}, \"description\": \"\", \"cloned_from\": null, \"upvotes_count\": 0, \"votes_count\": 0, \"targeted_countries\": [], \"groups\": [], \"validator_count\": 0, \"adversary\": \"\", \"tlp\": \"green\", \"locked\": 0, \"name\": \"Test Pulse\", \"created\": \"2018-04-15T06:54:00.743000\", \"downvotes_count\": 0, \"modified\": \"2018-04-15T06:54:00.743000\", \"export_count\": 4, \"extract_source\": [], \"is_following\": 0, \"author_id\": 57017, \"user_subscriber_count\": 1}, \"created\": \"2018-04-15T06:54:00.743000\", \"downvotes_count\": 0, \"modified\": \"2018-04-15T06:54:00.743000\", \"export_count\": 4, \"indicator_count\": 1, \"references\": []}, {\"pulse_source\": \"web\", \"subscriber_count\": 2, \"modified_text\": \"343 days ago \", \"is_subscribing\": null, \"is_following\": 0, \"vote\": 0, \"id\": \"5a78dc38f0edf80da6bee4d6\", \"industries\": [], \"author\": {\"username\": \"joe.bubenko\", \"is_subscribed\": 0, \"avatar_url\": \"https://otx.alienvault.com/static/img/default.png\", \"is_following\": 0, \"id\": \"51484\"}, \"cloned_from\": null, \"comment_count\": 0, \"follower_count\": 0, \"public\": 1, \"indicator_type_counts\": {\"IPv4\": 1}, \"TLP\": \"white\", \"description\": \"\", \"tags\": [], \"in_group\": false, \"is_modified\": false, \"upvotes_count\": 0, \"votes_count\": 0, \"targeted_countries\": [], \"groups\": [], \"validator_count\": 0, \"threat_hunter_scannable\": true, \"is_author\": false, \"adversary\": \"zurg\", \"name\": \"testing\", \"locked\": 0, \"observation\": {\"pulse_source\": \"web\", \"subscriber_count\": 2, \"is_subscribed\": 0, \"author_name\": \"joe.bubenko\", \"is_subscribing\": null, \"references\": [], \"vote\": 0, \"id\": \"5a78dc38f0edf80da6bee4d6\", \"industries\": [], \"tags\": [], \"comment_count\": 0, \"avatar_url\": \"https://otx.alienvault.com/static/img/default.png\", \"follower_count\": 0, \"public\": 1, \"revision\": 1, \"indicator_type_counts\": {\"IPv4\": 1}, \"description\": \"\", \"cloned_from\": null, \"upvotes_count\": 0, \"votes_count\": 0, \"targeted_countries\": [], \"groups\": [], \"validator_count\": 0, \"adversary\": \"zurg\", \"tlp\": \"white\", \"locked\": 0, \"name\": \"testing\", \"created\": \"2018-02-05T22:35:36.107000\", \"downvotes_count\": 0, \"modified\": \"2018-02-05T22:35:36.107000\", \"export_count\": 67, \"extract_source\": [], \"is_following\": 0, \"author_id\": 51484, \"user_subscriber_count\": 0}, \"created\": \"2018-02-05T22:35:36.107000\", \"downvotes_count\": 0, \"modified\": \"2018-02-05T22:35:36.107000\", \"export_count\": 67, \"indicator_count\": 1, \"references\": []}, {\"pulse_source\": \"api\", \"subscriber_count\": 145, \"modified_text\": \"387 days ago \", \"is_subscribing\": null, \"is_following\": 0, \"vote\": 0, \"id\": \"5a3fcf51e4071a71cd928f05\", \"industries\": [], \"author\": {\"username\": \"Ansorren\", \"is_subscribed\": 0, \"avatar_url\": \"https://otx.alienvault.com/static/img/default.png\", \"is_following\": 0, \"id\": \"43639\"}, \"cloned_from\": null, \"comment_count\": 0, \"follower_count\": 0, \"public\": 1, \"indicator_type_counts\": {\"IPv4\": 2171}, \"TLP\": \"green\", \"description\": \"\", \"tags\": [], \"in_group\": false, \"is_modified\": false, \"upvotes_count\": 0, \"votes_count\": 0, \"targeted_countries\": [], \"groups\": [], \"validator_count\": 0, \"threat_hunter_scannable\": true, \"is_author\": false, \"adversary\": \"\", \"name\": \"RiskDiscovery Twitter feeds - 2017-12-24\", \"locked\": 0, \"observation\": {\"pulse_source\": \"api\", \"subscriber_count\": 7, \"is_subscribed\": 0, \"author_name\": \"Ansorren\", \"is_subscribing\": null, \"references\": [], \"vote\": 0, \"id\": \"5a3fcf51e4071a71cd928f05\", \"industries\": [], \"tags\": [], \"comment_count\": 0, \"avatar_url\": \"https://otx.alienvault.com/static/img/default.png\", \"follower_count\": 0, \"public\": 1, \"revision\": 1, \"indicator_type_counts\": {\"IPv4\": 2171}, \"description\": \"\", \"cloned_from\": null, \"upvotes_count\": 0, \"votes_count\": 0, \"targeted_countries\": [], \"groups\": [], \"validator_count\": 0, \"adversary\": \"\", \"tlp\": \"green\", \"locked\": 0, \"name\": \"RiskDiscovery Twitter feeds - 2017-12-24\", \"created\": \"2017-12-24T16:01:21.313000\", \"downvotes_count\": 0, \"modified\": \"2017-12-24T16:01:21.313000\", \"export_count\": 9, \"extract_source\": [], \"is_following\": 0, \"author_id\": 43639, \"user_subscriber_count\": 138}, \"created\": \"2017-12-24T16:01:21.313000\", \"downvotes_count\": 0, \"modified\": \"2017-12-24T16:01:21.313000\", \"export_count\": 9, \"indicator_count\": 2171, \"references\": []}, {\"pulse_source\": \"web\", \"subscriber_count\": 4, \"modified_text\": \"427 days ago \", \"is_subscribing\": null, \"is_following\": 0, \"vote\": 0, \"id\": \"5a0b0c6b5fe42a3413031e7c\", \"industries\": [], \"author\": {\"username\": \"denvertracy\", \"is_subscribed\": 0, \"avatar_url\": \"https://otx.alienvault.com/static/img/default.png\", \"is_following\": 0, \"id\": \"46209\"}, \"cloned_from\": null, \"comment_count\": 0, \"follower_count\": 0, \"public\": 1, \"indicator_type_counts\": {\"IPv4\": 1}, \"TLP\": \"white\", \"description\": \"\", \"tags\": [], \"in_group\": false, \"is_modified\": false, \"upvotes_count\": 0, \"votes_count\": 0, \"targeted_countries\": [], \"groups\": [], \"validator_count\": 0, \"threat_hunter_scannable\": true, \"is_author\": false, \"adversary\": \"\", \"name\": \"My Case\", \"locked\": 0, \"observation\": {\"pulse_source\": \"web\", \"subscriber_count\": 3, \"is_subscribed\": 0, \"author_name\": \"denvertracy\", \"is_subscribing\": null, \"references\": [], \"vote\": 0, \"id\": \"5a0b0c6b5fe42a3413031e7c\", \"industries\": [], \"tags\": [], \"comment_count\": 0, \"avatar_url\": \"https://otx.alienvault.com/static/img/default.png\", \"follower_count\": 0, \"public\": 1, \"revision\": 1, \"indicator_type_counts\": {\"IPv4\": 1}, \"description\": \"\", \"cloned_from\": null, \"upvotes_count\": 0, \"votes_count\": 0, \"targeted_countries\": [], \"groups\": [], \"validator_count\": 0, \"adversary\": \"\", \"tlp\": \"white\", \"locked\": 0, \"name\": \"My Case\", \"created\": \"2017-11-14T15:31:55.601000\", \"downvotes_count\": 0, \"modified\": \"2017-11-14T15:31:55.601000\", \"export_count\": 52, \"extract_source\": [], \"is_following\": 0, \"author_id\": 46209, \"user_subscriber_count\": 1}, \"created\": \"2017-11-14T15:31:55.601000\", \"downvotes_count\": 0, \"modified\": \"2017-11-14T15:31:55.601000\", \"export_count\": 52, \"indicator_count\": 1, \"references\": []}, {\"pulse_source\": \"web\", \"subscriber_count\": 2, \"modified_text\": \"564 days ago \", \"is_subscribing\": null, \"is_following\": 0, \"vote\": 0, \"id\": \"595634a5e7adef3a014aac28\", \"industries\": [], \"author\": {\"username\": \"cterron\", \"is_subscribed\": 0, \"avatar_url\": \"https://otx.alienvault.com/static/img/default.png\", \"is_following\": 0, \"id\": \"35671\"}, \"cloned_from\": null, \"comment_count\": 0, \"follower_count\": 0, \"public\": 1, \"indicator_type_counts\": {\"IPv4\": 1}, \"TLP\": \"white\", \"description\": \"Indiador de test\", \"tags\": [], \"in_group\": false, \"is_modified\": false, \"upvotes_count\": 0, \"votes_count\": 0, \"targeted_countries\": [], \"groups\": [], \"validator_count\": 0, \"threat_hunter_scannable\": true, \"is_author\": false, \"adversary\": \"\", \"name\": \"Test de indicadores de Google\", \"locked\": 0, \"observation\": {\"pulse_source\": \"web\", \"subscriber_count\": 1, \"is_subscribed\": 0, \"author_name\": \"cterron\", \"is_subscribing\": null, \"references\": [], \"vote\": 0, \"id\": \"595634a5e7adef3a014aac28\", \"industries\": [], \"tags\": [], \"comment_count\": 0, \"avatar_url\": \"https://otx.alienvault.com/static/img/default.png\", \"follower_count\": 0, \"public\": 1, \"revision\": 1, \"indicator_type_counts\": {\"IPv4\": 1}, \"description\": \"Indiador de test\", \"cloned_from\": null, \"upvotes_count\": 0, \"votes_count\": 0, \"targeted_countries\": [], \"groups\": [], \"validator_count\": 0, \"adversary\": \"\", \"tlp\": \"white\", \"locked\": 0, \"name\": \"Test de indicadores de Google\", \"created\": \"2017-06-30T11:23:17.299000\", \"downvotes_count\": 0, \"modified\": \"2017-06-30T11:23:17.299000\", \"export_count\": 74, \"extract_source\": [], \"is_following\": 0, \"author_id\": 35671, \"user_subscriber_count\": 1}, \"created\": \"2017-06-30T11:23:17.299000\", \"downvotes_count\": 0, \"modified\": \"2017-06-30T11:23:17.299000\", \"export_count\": 74, \"indicator_count\": 1, \"references\": []}, {\"pulse_source\": \"web\", \"subscriber_count\": 7, \"modified_text\": \"823 days ago \", \"is_subscribing\": null, \"is_following\": 0, \"vote\": 0, \"id\": \"5800ecf209115d00c64d681b\", \"industries\": [], \"author\": {\"username\": \"stormey\", \"is_subscribed\": 0, \"avatar_url\": \"https://otx.alienvault.com/static/img/default.png\", \"is_following\": 0, \"id\": \"19965\"}, \"cloned_from\": null, \"comment_count\": 0, \"follower_count\": 0, \"public\": 1, \"indicator_type_counts\": {\"IPv4\": 1}, \"TLP\": \"green\", \"description\": \"\", \"tags\": [], \"in_group\": false, \"is_modified\": true, \"upvotes_count\": 0.0, \"votes_count\": -1.0, \"targeted_countries\": [], \"groups\": [], \"validator_count\": 0, \"threat_hunter_scannable\": true, \"is_author\": false, \"adversary\": \"\", \"name\": \"dont subscribe\", \"locked\": 0, \"observation\": {\"pulse_source\": \"web\", \"subscriber_count\": 5, \"is_subscribed\": 0, \"author_name\": \"stormey\", \"is_subscribing\": null, \"references\": [], \"vote\": 0, \"id\": \"5800ecf209115d00c64d681b\", \"industries\": [], \"tags\": [], \"comment_count\": 0, \"avatar_url\": \"https://otx.alienvault.com/static/img/default.png\", \"follower_count\": 0, \"public\": 1, \"revision\": 3, \"indicator_type_counts\": {\"IPv4\": 1}, \"description\": \"\", \"cloned_from\": null, \"upvotes_count\": 0.0, \"votes_count\": -1.0, \"targeted_countries\": [], \"groups\": [], \"validator_count\": 0, \"adversary\": \"\", \"tlp\": \"green\", \"locked\": 0, \"name\": \"dont subscribe\", \"created\": \"2016-10-14T14:34:26.728000\", \"downvotes_count\": 1.0, \"modified\": \"2016-10-14T14:39:23.163000\", \"export_count\": 48, \"extract_source\": [], \"is_following\": 0, \"author_id\": 19965, \"user_subscriber_count\": 2}, \"created\": \"2016-10-14T14:34:26.728000\", \"downvotes_count\": 1.0, \"modified\": \"2016-10-14T14:39:23.163000\", \"export_count\": 48, \"indicator_count\": 1, \"references\": []}], \"references\": []}, \"continent_code\": \"NA\", \"latitude\": 37.750999450683594, \"flag_url\": \"/static/img/flags/us.png\", \"asn\": \"AS15169 Google LLC\", \"city_data\": true, \"type_title\": \"IPv4\", \"region\": null, \"longitude\": -97.8219985961914, \"country_code3\": \"USA\", \"reputation\": 0, \"base_indicator\": {\"indicator\": \"8.8.8.8\", \"description\": \"\", \"title\": \"\", \"access_reason\": \"\", \"access_type\": \"public\", \"content\": \"\", \"type\": \"IPv4\", \"id\": 11911}}",
-                        "{\"postal_code\": null, \"country_code\": \"CN\", \"type\": \"IPv4\", \"city\": \"Zhengzhou\", \"indicator\": \"123.4.5.6\", \"whois\": \"http://whois.domaintools.com/123.4.5.6\", \"charset\": 0, \"dma_code\": 0, \"country_name\": \"China\", \"sections\": [\"general\", \"geo\", \"reputation\", \"url_list\", \"passive_dns\", \"malware\", \"nids_list\", \"http_scans\"], \"flag_title\": \"China\", \"area_code\": 0, \"pulse_info\": {\"count\": 0, \"pulses\": [], \"references\": []}, \"continent_code\": \"AS\", \"latitude\": 34.68360137939453, \"flag_url\": \"/static/img/flags/cn.png\", \"asn\": \"AS4837 CHINA UNICOM China169 Backbone\", \"city_data\": true, \"type_title\": \"IPv4\", \"region\": \"09\", \"longitude\": 113.53250122070312, \"country_code3\": \"CHN\", \"reputation\": 0, \"base_indicator\": {}}"
-                    ]
-                },
-                {
-                    "data_path": "action_result.summary.num_items",
-                    "data_type": "numeric",
-                    "example_values": [
-                        24,
-                        1
-                    ]
-                },
-                {
                     "data_path": "action_result.data.*.postal_code",
-                    "data_type": "string",
-                    "example_values": []
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.country_code",
                     "data_type": "string",
                     "example_values": [
-                        "KR",
                         "US"
                     ]
                 },
@@ -952,14 +860,12 @@
                 },
                 {
                     "data_path": "action_result.data.*.city",
-                    "data_type": "string",
-                    "example_values": []
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.indicator",
                     "data_type": "string",
                     "example_values": [
-                        "123.44.55.6",
                         "8.8.8.8"
                     ],
                     "contains": [
@@ -970,7 +876,6 @@
                     "data_path": "action_result.data.*.whois",
                     "data_type": "string",
                     "example_values": [
-                        "http://whois.domaintools.com/123.44.55.6",
                         "http://whois.domaintools.com/8.8.8.8"
                     ],
                     "contains": [
@@ -995,7 +900,6 @@
                     "data_path": "action_result.data.*.country_name",
                     "data_type": "string",
                     "example_values": [
-                        "Korea, Republic of",
                         "United States"
                     ]
                 },
@@ -1004,16 +908,12 @@
                     "data_type": "string",
                     "example_values": [
                         "http_scans"
-                    ],
-                    "contains": [
-                        "url"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.flag_title",
                     "data_type": "string",
                     "example_values": [
-                        "Korea, Republic of",
                         "United States"
                     ]
                 },
@@ -1028,83 +928,7 @@
                     "data_path": "action_result.data.*.pulse_info.count",
                     "data_type": "numeric",
                     "example_values": [
-                        0,
                         23
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.continent_code",
-                    "data_type": "string",
-                    "example_values": [
-                        "AS",
-                        "NA"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.latitude",
-                    "data_type": "numeric",
-                    "example_values": [
-                        37.51119995117188,
-                        37.75099945068359
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.flag_url",
-                    "data_type": "string",
-                    "example_values": [
-                        "/static/img/flags/kr.png",
-                        "/static/img/flags/us.png"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.asn",
-                    "data_type": "string",
-                    "example_values": [
-                        "AS6619 SamsungSDS Inc.",
-                        "AS15169 Google LLC"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.city_data",
-                    "data_type": "boolean",
-                    "example_values": [
-                        true,
-                        false
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.type_title",
-                    "data_type": "string",
-                    "example_values": [
-                        "IPv4"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.region",
-                    "data_type": "string",
-                    "example_values": []
-                },
-                {
-                    "data_path": "action_result.data.*.longitude",
-                    "data_type": "numeric",
-                    "example_values": [
-                        126.9740982055664,
-                        -97.8219985961914
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.country_code3",
-                    "data_type": "string",
-                    "example_values": [
-                        "KOR",
-                        "USA"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.reputation",
-                    "data_type": "numeric",
-                    "example_values": [
-                        0
                     ]
                 },
                 {
@@ -1125,14 +949,12 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.modified_text",
                     "data_type": "string",
                     "example_values": [
-                        "165 days ago ",
-                        "166 days ago "
+                        "229 days ago "
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.pulse_info.pulses.*.is_subscribing",
-                    "data_type": "string",
-                    "example_values": []
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.pulse_info.pulses.*.is_following",
@@ -1198,8 +1020,7 @@
                 },
                 {
                     "data_path": "action_result.data.*.pulse_info.pulses.*.cloned_from",
-                    "data_type": "string",
-                    "example_values": []
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.pulse_info.pulses.*.comment_count",
@@ -1340,8 +1161,7 @@
                 },
                 {
                     "data_path": "action_result.data.*.pulse_info.pulses.*.observation.is_subscribing",
-                    "data_type": "string",
-                    "example_values": []
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.pulse_info.pulses.*.observation.is_following",
@@ -1366,8 +1186,7 @@
                 },
                 {
                     "data_path": "action_result.data.*.pulse_info.pulses.*.observation.cloned_from",
-                    "data_type": "string",
-                    "example_values": []
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.pulse_info.pulses.*.observation.comment_count",
@@ -1555,6 +1374,74 @@
                     ]
                 },
                 {
+                    "data_path": "action_result.data.*.continent_code",
+                    "data_type": "string",
+                    "example_values": [
+                        "NA"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.latitude",
+                    "data_type": "numeric",
+                    "example_values": [
+                        37.751
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.flag_url",
+                    "data_type": "string",
+                    "example_values": [
+                        "/static/img/flags/us.png"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.asn",
+                    "data_type": "string",
+                    "example_values": [
+                        "AS15169 Google LLC"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.city_data",
+                    "data_type": "boolean",
+                    "example_values": [
+                        true,
+                        false
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.type_title",
+                    "data_type": "string",
+                    "example_values": [
+                        "IPv4"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.region",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.data.*.longitude",
+                    "data_type": "numeric",
+                    "example_values": [
+                        -97.822
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.country_code3",
+                    "data_type": "string",
+                    "example_values": [
+                        "USA"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.reputation",
+                    "data_type": "numeric",
+                    "example_values": [
+                        0
+                    ]
+                },
+                {
                     "data_path": "action_result.data.*.base_indicator.indicator",
                     "data_type": "string",
                     "example_values": [
@@ -1600,6 +1487,44 @@
                     "example_values": [
                         11911
                     ]
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "example_values": [
+                        "Num pulses: 7"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.ip",
+                    "data_type": "string",
+                    "example_values": [
+                        "8.8.8.8"
+                    ],
+                    "contains": [
+                        "ip"
+                    ]
+                },
+                {
+                    "data_path": "action_result.summary.num_pulses",
+                    "data_type": "numeric",
+                    "example_values": [
+                        7
+                    ]
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
                 }
             ],
             "render": {
@@ -1637,20 +1562,6 @@
             },
             "output": [
                 {
-                    "data_path": "action_result.parameter.hash",
-                    "data_type": "string",
-                    "contains": [
-                        "hash",
-                        "sha256",
-                        "sha1",
-                        "md5"
-                    ],
-                    "example_values": [
-                        "5fab9bde10a51a0c9ebf27061f0d8abf",
-                        "0b67e662d2fd348b5360ecac6943d69c"
-                    ]
-                },
-                {
                     "data_path": "action_result.status",
                     "data_type": "string",
                     "example_values": [
@@ -1658,38 +1569,9 @@
                     ]
                 },
                 {
-                    "data_path": "action_result.message",
-                    "data_type": "string",
-                    "example_values": [
-                        "Num items: 1"
-                    ]
-                },
-                {
-                    "data_path": "summary.total_objects",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "action_result.data",
-                    "data_type": "string",
-                    "example_values": [
-                        "{\"indicator\": \"5fab9bde10a51a0c9ebf27061f0d8abf\", \"type_title\": \"FileHash-MD5\", \"base_indicator\": {}, \"pulse_info\": {\"count\": 0, \"pulses\": [], \"references\": []}, \"type\": \"md5\", \"sections\": [\"general\", \"analysis\"]}"
-                    ]
-                },
-                {
                     "data_path": "action_result.data.*.indicator",
                     "data_type": "string",
                     "example_values": [
-                        "5fab9bde10a51a0c9ebf27061f0d8abf",
                         "0b67e662d2fd348b5360ecac6943d69c"
                     ],
                     "contains": [
@@ -1701,35 +1583,6 @@
                     "data_type": "string",
                     "example_values": [
                         "FileHash-MD5"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.pulse_info.count",
-                    "data_type": "numeric",
-                    "example_values": [
-                        0,
-                        9
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.type",
-                    "data_type": "string",
-                    "example_values": [
-                        "md5"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.sections",
-                    "data_type": "string",
-                    "example_values": [
-                        "analysis"
-                    ]
-                },
-                {
-                    "data_path": "action_result.summary.num_items",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
                     ]
                 },
                 {
@@ -1780,6 +1633,13 @@
                     ]
                 },
                 {
+                    "data_path": "action_result.data.*.pulse_info.count",
+                    "data_type": "numeric",
+                    "example_values": [
+                        7
+                    ]
+                },
+                {
                     "data_path": "action_result.data.*.pulse_info.pulses.*.pulse_source",
                     "data_type": "string",
                     "example_values": [
@@ -1790,14 +1650,14 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.subscriber_count",
                     "data_type": "numeric",
                     "example_values": [
-                        1
+                        3
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.pulse_info.pulses.*.modified_text",
                     "data_type": "string",
                     "example_values": [
-                        "23 minutes ago "
+                        "13 days ago "
                     ]
                 },
                 {
@@ -1904,9 +1764,6 @@
                     "data_type": "numeric",
                     "example_values": [
                         6
-                    ],
-                    "contains": [
-                        "domain"
                     ]
                 },
                 {
@@ -1921,9 +1778,6 @@
                     "data_type": "numeric",
                     "example_values": [
                         4
-                    ],
-                    "contains": [
-                        "host name"
                     ]
                 },
                 {
@@ -2033,7 +1887,7 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.observation.subscriber_count",
                     "data_type": "numeric",
                     "example_values": [
-                        0
+                        1
                     ]
                 },
                 {
@@ -2132,9 +1986,6 @@
                     "data_type": "numeric",
                     "example_values": [
                         6
-                    ],
-                    "contains": [
-                        "domain"
                     ]
                 },
                 {
@@ -2149,9 +2000,6 @@
                     "data_type": "numeric",
                     "example_values": [
                         4
-                    ],
-                    "contains": [
-                        "host name"
                     ]
                 },
                 {
@@ -2243,7 +2091,7 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.observation.export_count",
                     "data_type": "numeric",
                     "example_values": [
-                        1
+                        2
                     ]
                 },
                 {
@@ -2264,7 +2112,7 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.observation.user_subscriber_count",
                     "data_type": "numeric",
                     "example_values": [
-                        1
+                        2
                     ]
                 },
                 {
@@ -2292,7 +2140,7 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.export_count",
                     "data_type": "numeric",
                     "example_values": [
-                        1
+                        2
                     ]
                 },
                 {
@@ -2352,6 +2200,61 @@
                     "contains": [
                         "url"
                     ]
+                },
+                {
+                    "data_path": "action_result.data.*.type",
+                    "data_type": "string",
+                    "example_values": [
+                        "md5"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.sections",
+                    "data_type": "string",
+                    "example_values": [
+                        "analysis"
+                    ]
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "example_values": [
+                        "Num pulses: 4"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.hash",
+                    "data_type": "string",
+                    "example_values": [
+                        "0b67e662d2fd348b5360ecac6943d69c"
+                    ],
+                    "contains": [
+                        "hash",
+                        "sha256",
+                        "sha1",
+                        "md5"
+                    ]
+                },
+                {
+                    "data_path": "action_result.summary.num_pulses",
+                    "data_type": "numeric",
+                    "example_values": [
+                        4
+                    ]
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
                 }
             ],
             "render": {
@@ -2395,33 +2298,17 @@
                 {
                     "data_path": "action_result.data.*.domain",
                     "data_type": "string",
-                    "example_values": [
-                        "splunk.com",
-                        "Unavailable"
-                    ],
                     "contains": [
                         "domain"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.alexa",
-                    "data_type": "string",
-                    "example_values": [
-                        "http://www.alexa.com/siteinfo/splunk.com"
-                    ],
-                    "contains": [
-                        "url"
-                    ]
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.whois",
-                    "data_type": "string",
-                    "example_values": [
-                        "http://whois.domaintools.com/splunk.com"
-                    ],
-                    "contains": [
-                        "url"
-                    ]
+                    "data_type": "string"
                 },
                 {
                     "data_path": "action_result.data.*.type_title",
@@ -2433,10 +2320,6 @@
                 {
                     "data_path": "action_result.data.*.hostname",
                     "data_type": "string",
-                    "example_values": [
-                        "www.splunk.com",
-                        "Unavailable"
-                    ],
                     "contains": [
                         "host name"
                     ]
@@ -2445,77 +2328,7 @@
                     "data_path": "action_result.data.*.pulse_info.count",
                     "data_type": "numeric",
                     "example_values": [
-                        0,
                         7
-                    ],
-                    "column_name": "pulse count",
-                    "column_order": 1
-                },
-                {
-                    "data_path": "action_result.data.*.indicator",
-                    "data_type": "string",
-                    "example_values": [
-                        "https://www.splunk.com/en_us/software/it-service-intelligence.html"
-                    ],
-                    "contains": [
-                        "url"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.type",
-                    "data_type": "string",
-                    "example_values": [
-                        "url"
-                    ]
-                },
-                {
-                    "data_path": "action_result.data.*.sections",
-                    "data_type": "string",
-                    "example_values": [
-                        "http_scans"
-                    ],
-                    "contains": [
-                        "url"
-                    ]
-                },
-                {
-                    "data_path": "action_result.message",
-                    "data_type": "string",
-                    "example_values": [
-                        "Num items: 1"
-                    ]
-                },
-                {
-                    "data_path": "action_result.parameter.url",
-                    "data_type": "string",
-                    "example_values": [
-                        "https://www.splunk.com/en_us/software/it-service-intelligence.html"
-                    ],
-                    "contains": [
-                        "url"
-                    ],
-                    "column_name": "url",
-                    "column_order": 0
-                },
-                {
-                    "data_path": "action_result.summary.num_items",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "summary.total_objects",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
-                    ]
-                },
-                {
-                    "data_path": "summary.total_objects_successful",
-                    "data_type": "numeric",
-                    "example_values": [
-                        1
                     ]
                 },
                 {
@@ -2528,6 +2341,9 @@
                 {
                     "data_path": "action_result.data.*.pulse_info.pulses.*.references",
                     "data_type": "string",
+                    "example_values": [
+                        "https://twitter.com/pollo290987/status/1098448852380725248"
+                    ],
                     "contains": [
                         "url"
                     ]
@@ -2536,14 +2352,14 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.subscriber_count",
                     "data_type": "numeric",
                     "example_values": [
-                        349
+                        366
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.pulse_info.pulses.*.modified_text",
                     "data_type": "string",
                     "example_values": [
-                        "9 hours ago "
+                        "13 days ago "
                     ]
                 },
                 {
@@ -2746,6 +2562,9 @@
                 {
                     "data_path": "action_result.data.*.pulse_info.pulses.*.observation.references",
                     "data_type": "string",
+                    "example_values": [
+                        "https://twitter.com/pollo290987/status/1098448852380725248"
+                    ],
                     "contains": [
                         "url"
                     ]
@@ -2754,7 +2573,7 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.observation.subscriber_count",
                     "data_type": "numeric",
                     "example_values": [
-                        3
+                        8
                     ]
                 },
                 {
@@ -2930,7 +2749,7 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.observation.export_count",
                     "data_type": "numeric",
                     "example_values": [
-                        3
+                        4
                     ]
                 },
                 {
@@ -2951,7 +2770,7 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.observation.user_subscriber_count",
                     "data_type": "numeric",
                     "example_values": [
-                        346
+                        358
                     ]
                 },
                 {
@@ -2979,7 +2798,7 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.export_count",
                     "data_type": "numeric",
                     "example_values": [
-                        3
+                        4
                     ]
                 },
                 {
@@ -3008,9 +2827,6 @@
                     "data_type": "numeric",
                     "example_values": [
                         107
-                    ],
-                    "contains": [
-                        "domain"
                     ]
                 },
                 {
@@ -3018,9 +2834,6 @@
                     "data_type": "numeric",
                     "example_values": [
                         37
-                    ],
-                    "contains": [
-                        "host name"
                     ]
                 },
                 {
@@ -3049,9 +2862,6 @@
                     "data_type": "numeric",
                     "example_values": [
                         107
-                    ],
-                    "contains": [
-                        "domain"
                     ]
                 },
                 {
@@ -3059,9 +2869,6 @@
                     "data_type": "numeric",
                     "example_values": [
                         37
-                    ],
-                    "contains": [
-                        "host name"
                     ]
                 },
                 {
@@ -3081,7 +2888,27 @@
                 {
                     "data_path": "action_result.data.*.pulse_info.references",
                     "data_type": "string",
+                    "example_values": [
+                        "https://twitter.com/pollo290987/status/1098448852380725248"
+                    ],
                     "contains": [
+                        "url"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.indicator",
+                    "data_type": "string",
+                    "example_values": [
+                        "http://190.191.218.44:80"
+                    ],
+                    "contains": [
+                        "url"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.type",
+                    "data_type": "string",
+                    "example_values": [
                         "url"
                     ]
                 },
@@ -3130,6 +2957,51 @@
                     "data_type": "numeric",
                     "example_values": [
                         1659197884
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.sections",
+                    "data_type": "string",
+                    "example_values": [
+                        "http_scans"
+                    ]
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "example_values": [
+                        "Num pulses: 5"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.url",
+                    "data_type": "string",
+                    "example_values": [
+                        "http://190.191.218.44:80"
+                    ],
+                    "contains": [
+                        "url"
+                    ]
+                },
+                {
+                    "data_path": "action_result.summary.num_pulses",
+                    "data_type": "numeric",
+                    "example_values": [
+                        5
+                    ]
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
                     ]
                 }
             ],
