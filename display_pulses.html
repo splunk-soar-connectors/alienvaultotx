@@ -73,7 +73,7 @@
   {% for result in results %} <!-- loop for each result -->
     {% if result.data %}
           <!-- File Details -->
-          {% if result.message == 'Num pulses: 0' %}
+          {% if result.data.pulse_info.count > 0 %}
             <h3 class="wf-h3-style">AlienVault OTX Pulses</h3>
           {% else %}
             <h3 class="wf-h3-style">No Pulses Found</h3>
