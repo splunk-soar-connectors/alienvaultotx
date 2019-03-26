@@ -731,6 +731,104 @@
                     "example_values": [
                         1
                     ]
+                },
+                {
+                    "data_path": "action_result.data.*.pulse_info.pulses.*.indicator_type_counts.URL",
+                    "data_type": "numeric",
+                    "example_values": [
+                        7637
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.pulse_info.pulses.*.indicator_type_counts.email",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.pulse_info.pulses.*.indicator_type_counts.FileHash-MD5",
+                    "data_type": "numeric",
+                    "example_values": [
+                        2
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.pulse_info.pulses.*.tags",
+                    "data_type": "string",
+                    "example_values": [
+                        "botnet"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.pulse_info.pulses.*.observation.indicator_type_counts.URL",
+                    "data_type": "numeric",
+                    "example_values": [
+                        7637
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.pulse_info.pulses.*.observation.indicator_type_counts.email",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.pulse_info.pulses.*.observation.indicator_type_counts.FileHash-MD5",
+                    "data_type": "numeric",
+                    "example_values": [
+                        2
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.pulse_info.pulses.*.observation.tags",
+                    "data_type": "string",
+                    "example_values": [
+                        "botnet"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.pulse_info.pulses.*.indicator_type_counts.FileHash-SHA256",
+                    "data_type": "numeric",
+                    "example_values": [
+                        19
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.pulse_info.pulses.*.indicator_type_counts.FileHash-SHA1",
+                    "data_type": "numeric",
+                    "example_values": [
+                        16
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.pulse_info.pulses.*.observation.indicator_type_counts.FileHash-SHA256",
+                    "data_type": "numeric",
+                    "example_values": [
+                        19
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.pulse_info.pulses.*.observation.indicator_type_counts.FileHash-SHA1",
+                    "data_type": "numeric",
+                    "example_values": [
+                        16
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.pulse_info.pulses.*.indicator_type_counts.CVE",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.pulse_info.pulses.*.observation.indicator_type_counts.CVE",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
                 }
             ],
             "render": {
