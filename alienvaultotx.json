@@ -2037,9 +2037,9 @@
                     "primary": true,
                     "contains": [
                         "hash",
-                        "sha256",
                         "sha1",
-                        "md5"
+                        "md5",
+                        "sha256"
                     ],
                     "value_list": [],
                     "default": "",
