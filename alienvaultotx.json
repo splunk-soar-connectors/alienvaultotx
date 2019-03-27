@@ -698,7 +698,8 @@
                         "splunk.com"
                     ],
                     "contains": [
-                        "domain"
+                        "domain",
+                        "url"
                     ]
                 },
                 {
@@ -2029,9 +2030,9 @@
                     "primary": true,
                     "contains": [
                         "hash",
-                        "sha256",
                         "sha1",
-                        "md5"
+                        "md5",
+                        "sha256"
                     ],
                     "value_list": [],
                     "default": "",
@@ -2777,6 +2778,7 @@
                         "5ac9f4e25ef4002274496e18ea537b4c582a3acf3126cc1830a63941d9c91e64"
                     ],
                     "contains": [
+                        "hash",
                         "sha1",
                         "md5",
                         "sha256"
