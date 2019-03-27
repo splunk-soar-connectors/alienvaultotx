@@ -148,7 +148,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
             r = request_func(
                             url,
                             headers=headers,
-                            verify=config.get('verify_server_cert', False),
+                            verify=config.get('verify_server_cert', True),
                             **kwargs)
             self.save_progress("Retrieving Details")
         # except BadRequest:
@@ -325,7 +325,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
         optional_config_name = config.get('optional_config_name')
         """
 
-        self._base_url = config.get('base_url')
+        self._base_url = 'https://otx.alienvault.com'
         self._api_key = config.get('api_key')
         self._ip = config.get('ip')
 
