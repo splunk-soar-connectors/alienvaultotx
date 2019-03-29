@@ -8,6 +8,7 @@
 
 # Phantom App imports
 import phantom.app as phantom
+import phantom.utils as utils
 from phantom.base_connector import BaseConnector
 from phantom.action_result import ActionResult
 
@@ -66,7 +67,11 @@ class AlienvaultOtxv2Connector(BaseConnector):
         message = u"Status Code: {0}. Data from server:\n{1}\n".format(status_code,
                 error_text)
 
-        message = message.replace(u'{', u'{{').replace(u'}', u'}}')
+        # Accounting for incorrect API response
+        if self.get_action_identifier() == 'domain_reputation':
+            message = "Parameter 'domain' failed validation"
+        else:
+            message = message.replace(u'{', u'{{').replace(u'}', u'}}')
 
         return RetVal(action_result.set_status(phantom.APP_ERROR, message), None)
 
@@ -143,7 +148,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
             r = request_func(
                             url,
                             headers=headers,
-                            verify=config.get('verify_server_cert', False),
+                            verify=config.get('verify_server_cert', True),
                             **kwargs)
             self.save_progress("Retrieving Details")
         # except BadRequest:
@@ -191,7 +196,12 @@ class AlienvaultOtxv2Connector(BaseConnector):
         action_result = self.add_action_result(ActionResult(dict(param)))
 
         domain = param['domain']
-        ret_val, response = self._make_rest_call('/api/v1/indicators/domain/{0}/general'.format(domain), action_result)
+
+        # Check if domain is valid
+        if utils.is_domain(domain):
+            ret_val, response = self._make_rest_call('/api/v1/indicators/domain/{0}/general'.format(domain), action_result)
+        else:
+            return action_result.set_status(phantom.APP_ERROR, "Malformed domain")
 
         if (phantom.is_fail(ret_val)):
             return action_result.get_status()
@@ -315,7 +325,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
         optional_config_name = config.get('optional_config_name')
         """
 
-        self._base_url = config.get('base_url')
+        self._base_url = 'https://otx.alienvault.com'
         self._api_key = config.get('api_key')
         self._ip = config.get('ip')
 
@@ -354,9 +364,10 @@ if __name__ == '__main__':
         password = getpass.getpass("Password: ")
 
     if (username and password):
+        login_url = BaseConnector._get_phantom_base_url() + "login"
         try:
             print ("Accessing the Login page")
-            r = requests.get("https://127.0.0.1/login", verify=False)
+            r = requests.get(login_url, verify=False)
             csrftoken = r.cookies['csrftoken']
 
             data = dict()
@@ -366,10 +377,10 @@ if __name__ == '__main__':
 
             headers = dict()
             headers['Cookie'] = 'csrftoken=' + csrftoken
-            headers['Referer'] = 'https://127.0.0.1/login'
+            headers['Referer'] = login_url
 
             print ("Logging into Platform to get the session id")
-            r2 = requests.post("https://127.0.0.1/login", verify=False, data=data, headers=headers)
+            r2 = requests.post(login_url, verify=False, data=data, headers=headers)
             session_id = r2.cookies['sessionid']
         except Exception as e:
             print ("Unable to get session id from the platfrom. Error: " + str(e))
