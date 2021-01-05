@@ -1,5 +1,5 @@
 # File: alienvaultotx_connector.py
-# Copyright (c) 2019 Splunk Inc.
+# Copyright (c) 2019-2021 Splunk Inc.
 #
 # SPLUNK CONFIDENTIAL - Use or disclosure of this material in whole or in part
 # without a valid written license from Splunk Inc. is PROHIBITED.# -----------------------------------------
@@ -48,7 +48,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
         if response.status_code == 200:
             return RetVal(phantom.APP_SUCCESS, {})
 
-        return RetVal(action_result.set_status(phantom.APP_ERROR, u"Empty response and no information in the header"), None)
+        return RetVal(action_result.set_status(phantom.APP_ERROR, "Empty response and no information in the header"), None)
 
     def _process_html_response(self, response, action_result):
 
@@ -60,18 +60,18 @@ class AlienvaultOtxv2Connector(BaseConnector):
             error_text = soup.text
             split_lines = error_text.split('\n')
             split_lines = [x.strip() for x in split_lines if x.strip()]
-            error_text = u'\n'.join(split_lines)
+            error_text = '\n'.join(split_lines)
         except:
-            error_text = u"Cannot parse error details"
+            error_text = "Cannot parse error details"
 
-        message = u"Status Code: {0}. Data from server:\n{1}\n".format(status_code,
+        message = "Status Code: {0}. Data from server:\n{1}\n".format(status_code,
                 error_text)
 
         # Accounting for incorrect API response
         if self.get_action_identifier() == 'domain_reputation':
             message = "Parameter 'domain' failed validation"
         else:
-            message = message.replace(u'{', u'{{').replace(u'}', u'}}')
+            message = message.replace('{', '{{').replace('}', '}}')
 
         return RetVal(action_result.set_status(phantom.APP_ERROR, message), None)
 
@@ -81,15 +81,15 @@ class AlienvaultOtxv2Connector(BaseConnector):
         try:
             resp_json = r.json()
         except Exception as e:
-            return RetVal(action_result.set_status(phantom.APP_ERROR, u"Unable to parse JSON response. Error: {0}".format(str(e))), None)
+            return RetVal(action_result.set_status(phantom.APP_ERROR, "Unable to parse JSON response. Error: {0}".format(str(e))), None)
 
         # Please specify the status codes here
         if 200 <= r.status_code < 399:
             return RetVal(phantom.APP_SUCCESS, resp_json)
 
         # You should process the error returned in the json
-        message = u"Error from server. Status Code: {0} Data from server: {1}".format(
-                r.status_code, r.text.replace(u'{', u'{{').replace(u'}', u'}}'))
+        message = "Error from server. Status Code: {0} Data from server: {1}".format(
+                r.status_code, r.text.replace('{', '{{').replace('}', '}}'))
 
         return RetVal(action_result.set_status(phantom.APP_ERROR, message), None)
 
@@ -119,7 +119,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
             return self._process_empty_reponse(r, action_result)
 
         # everything else is actually an error at this point
-        message = u"Can't process response from server. Status Code: {0} Data from server: {1}".format(
+        message = "Can't process response from server. Status Code: {0} Data from server: {1}".format(
                 r.status_code, r.text.replace('{', '{{').replace('}', '}}'))
 
         return RetVal(action_result.set_status(phantom.APP_ERROR, message), None)
@@ -366,7 +366,7 @@ if __name__ == '__main__':
     if (username and password):
         login_url = BaseConnector._get_phantom_base_url() + "login"
         try:
-            print ("Accessing the Login page")
+            print("Accessing the Login page")
             r = requests.get(login_url, verify=False)
             csrftoken = r.cookies['csrftoken']
 
@@ -379,11 +379,11 @@ if __name__ == '__main__':
             headers['Cookie'] = 'csrftoken=' + csrftoken
             headers['Referer'] = login_url
 
-            print ("Logging into Platform to get the session id")
+            print("Logging into Platform to get the session id")
             r2 = requests.post(login_url, verify=False, data=data, headers=headers)
             session_id = r2.cookies['sessionid']
         except Exception as e:
-            print ("Unable to get session id from the platfrom. Error: " + str(e))
+            print("Unable to get session id from the platfrom. Error: " + str(e))
             exit(1)
 
     with open(args.input_test_json) as f:
@@ -399,6 +399,6 @@ if __name__ == '__main__':
             connector._set_csrf_info(csrftoken, headers['Referer'])
 
         ret_val = connector._handle_action(json.dumps(in_json), None)
-        print (json.dumps(json.loads(ret_val), indent=4))
+        print(json.dumps(json.loads(ret_val), indent=4))
 
     exit(0)
