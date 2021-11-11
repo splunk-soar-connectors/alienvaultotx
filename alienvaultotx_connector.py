@@ -60,7 +60,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
                     error_msg = e.args[1]
                 elif len(e.args) == 1:
                     error_msg = e.args[0]
-        except:
+        except Exception:
             pass
 
         return "Error Code: {0}. Error Message: {1}".format(error_code, error_msg)
@@ -86,7 +86,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
             split_lines = error_text.split('\n')
             split_lines = [x.strip() for x in split_lines if x.strip()]
             error_text = '\n'.join(split_lines)
-        except:
+        except Exception:
             error_text = "Cannot parse error details"
 
         message = "Status Code: {0}. Data from server:\n{1}\n".format(status_code, error_text)

@@ -3764,7 +3764,7 @@
         {
             "action": "get pulses",
             "identifier": "get_pulses",
-            "description": "To get the pulse of the provided pulse ID",
+            "description": "Get the pulse of the provided pulse ID",
             "type": "investigate",
             "read_only": true,
             "parameters": {
