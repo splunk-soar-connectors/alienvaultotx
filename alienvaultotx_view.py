@@ -14,10 +14,10 @@ def get_ctx_result(result):
 
     ctx_result['param'] = param
 
-    if (data):
+    if data:
         ctx_result['data'] = data[0]
 
-    if (summary):
+    if summary:
         ctx_result['summary'] = summary
 
     return ctx_result
@@ -30,8 +30,8 @@ def display_pulses(provides, all_app_runs, context):
         for result in action_results:
 
             ctx_result = get_ctx_result(result)
-            if (not ctx_result):
+            if not ctx_result:
                 continue
             results.append(ctx_result)
-    # print context
+
     return 'display_pulses.html'
