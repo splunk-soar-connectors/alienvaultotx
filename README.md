@@ -2,7 +2,7 @@
 # AlienVault OTX
 
 Publisher: Splunk  
-Connector Version: 2\.1\.3  
+Connector Version: 2\.1\.4  
 Product Vendor: AlienVault  
 Product Name: AlienVault OTX  
 Product Version Supported (regex): "\.\*"  
