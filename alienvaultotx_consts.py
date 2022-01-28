@@ -53,3 +53,5 @@ OTX_IP_REPUTATION_ACTION = "ip_reputation"
 OTX_FILE_REPUTATION_ACTION = "file_reputation"
 OTX_URL_REPUTATION_ACTION = "url_reputation"
 OTX_GET_PULSES_ACTION = "get_pulses"
+
+OTX_DEFAULT_REQUEST_TIMEOUT = 30  # in seconds
