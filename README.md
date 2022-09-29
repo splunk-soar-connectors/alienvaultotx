@@ -2,16 +2,16 @@
 # AlienVault OTX
 
 Publisher: Splunk  
-Connector Version: 2\.1\.4  
+Connector Version: 2\.2\.0  
 Product Vendor: AlienVault  
 Product Name: AlienVault OTX  
 Product Version Supported (regex): "\.\*"  
-Minimum Product Version: 4\.10\.0\.40961  
+Minimum Product Version: 5\.3\.3  
 
 This app integrates with an instance of AlienVault OTX to perform investigative actions
 
-[comment]: # " File: readme.md"
-[comment]: # "  Copyright (c) 2019-2021 Splunk Inc."
+[comment]: # " File: README.md"
+[comment]: # "  Copyright (c) 2019-2022 Splunk Inc."
 [comment]: # ""
 [comment]: # "Licensed under the Apache License, Version 2.0 (the 'License');"
 [comment]: # "you may not use this file except in compliance with the License."
