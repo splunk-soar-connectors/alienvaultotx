@@ -14,25 +14,17 @@
 # and limitations under the License.
 #
 #
-# without a valid written license from Splunk Inc. is PROHIBITED.# -----------------------------------------
-# Phantom sample App Connector python file
-# Phantom App imports
+import ipaddress
+import json
+
 import phantom.app as phantom
 import phantom.utils as utils
-from phantom.base_connector import BaseConnector
+import requests
+from bs4 import BeautifulSoup
 from phantom.action_result import ActionResult
+from phantom.base_connector import BaseConnector
 
 from alienvaultotx_consts import *
-
-import requests
-import json
-import ipaddress
-from bs4 import BeautifulSoup
-# from OTXv2 import OTXv2
-# from OTXv2 import InvalidAPIKey
-# from OTXv2 import BadRequest
-# import urllib2
-# from OTXv2 import IndicatorTypes
 
 
 class RetVal(tuple):
@@ -60,20 +52,26 @@ class AlienvaultOtxv2Connector(BaseConnector):
         :return: error message
         """
 
-        error_code = OTX_ERR_CODE_UNAVAILABLE
+        self.error_print("Traceback: ", e)
+        error_code = None
         error_msg = OTX_ERR_MSG_UNAVAILABLE
 
         try:
-            if e.args:
+            if hasattr(e, "args"):
                 if len(e.args) > 1:
                     error_code = e.args[0]
                     error_msg = e.args[1]
                 elif len(e.args) == 1:
                     error_msg = e.args[0]
-        except Exception:
-            pass
+        except Exception as e:
+            self.error_print("Error occurred while retrieving exception information", e)
 
-        return "Error Code: {0}. Error Message: {1}".format(error_code, error_msg)
+        if not error_code:
+            error_text = "Error Message: {}".format(error_msg)
+        else:
+            error_text = "Error Code: {}. Error Message: {}".format(error_code, error_msg)
+
+        return error_text
 
     def _process_empty_response(self, response, action_result):
 
@@ -92,6 +90,9 @@ class AlienvaultOtxv2Connector(BaseConnector):
 
         try:
             soup = BeautifulSoup(response.text, "html.parser")
+            # Remove the script, style, footer and navigation part from the HTML message
+            for element in soup(["script", "style", "footer", "nav"]):
+                element.extract()
             error_text = soup.text
             split_lines = error_text.split('\n')
             split_lines = [x.strip() for x in split_lines if x.strip()]
@@ -114,7 +115,8 @@ class AlienvaultOtxv2Connector(BaseConnector):
 
         # Try a json parse
         try:
-            resp_json = r.json()
+            resp_json_unformatted = r.json()
+            resp_json = json.loads(json.dumps(resp_json_unformatted).replace('\\u0000', '\\\\u0000'))
         except Exception as e:
             error_msg = self._get_error_message_from_exception(e)
             return RetVal(action_result.set_status(phantom.APP_ERROR, "Unable to parse JSON response. Error: {0}".format(error_msg)), None)
@@ -170,8 +172,6 @@ class AlienvaultOtxv2Connector(BaseConnector):
         # Create a URL to connect to
         url = "{}{}".format(self._base_url, endpoint)
 
-        config = self.get_config()
-
         resp_json = None
 
         try:
@@ -185,15 +185,10 @@ class AlienvaultOtxv2Connector(BaseConnector):
             r = request_func(
                             url,
                             headers=headers,
-                            verify=config.get('verify_server_cert', True),
+                            verify=self._verify,
+                            timeout=OTX_DEFAULT_REQUEST_TIMEOUT,
                             **kwargs)
             self.save_progress("Retrieving Details")
-        # except BadRequest:
-        #    return RetVal(action_result.set_status(phantom.APP_ERROR, "Invalid API Key"), resp_json)
-        # except InvalidAPIKey:
-        #    return RetVal(action_result.set_status(phantom.APP_ERROR, "Invalid API Key"), resp_json)
-        # except urllib2.URLError:
-        #    return RetVal(action_result.set_status(phantom.APP_ERROR, "Invalid URL"), resp_json)
         except Exception as e:
             error_msg = self._get_error_message_from_exception(e)
             return RetVal(action_result.set_status(phantom.APP_ERROR, "Error Connecting to server. Details: {0}".format(error_msg)), resp_json)
@@ -205,27 +200,16 @@ class AlienvaultOtxv2Connector(BaseConnector):
         # Add an action result object to self (BaseConnector) to represent the action for this param
         action_result = self.add_action_result(ActionResult(dict(param)))
 
-        # NOTE: test connectivity does _NOT_ take any parameters
-        # i.e. the param dictionary passed to this handler will be empty.
-        # Also typically it does not add any data into an action_result either.
-        # The status and progress messages are more important.
-
-        # self.save_progress("Connecting to endpoint")
         # make rest call
         ret_val, _ = self._make_rest_call(OTX_TEST_CONNECTIVITY_ENDPOINT, action_result)
 
         if phantom.is_fail(ret_val):
-            # the call to the 3rd party device or service failed, action result should contain all the error details
-            # for now the return is commented out, but after implementation, return from here
             self.save_progress(OTX_ERR_CONNECTIVITY_TEST)
             return action_result.get_status()
 
         # Return success
         self.save_progress(OTX_SUCC_CONNECTIVITY_TEST)
         return action_result.set_status(phantom.APP_SUCCESS)
-
-        # For now return Error with a message, in case of success we don't set the message, but use the summary
-        # return action_result.set_status(phantom.APP_ERROR, "Action not yet implemented")
 
     def _handle_domain_reputation(self, param):
 
@@ -247,7 +231,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
         action_result.add_data(response)
 
         summary = action_result.update_summary({})
-        summary[OTX_JSON_NUM_PULSES] = len(response[OTX_JSON_PULSE_INFO][OTX_JSON_PULSES])
+        summary[OTX_JSON_NUM_PULSES] = len(response.get(OTX_JSON_PULSE_INFO, {}).get(OTX_JSON_PULSES, []))
 
         return action_result.set_status(phantom.APP_SUCCESS)
 
@@ -286,7 +270,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
         action_result.add_data(response)
 
         summary = action_result.update_summary({})
-        summary[OTX_JSON_NUM_PULSES] = len(response[OTX_JSON_PULSE_INFO][OTX_JSON_PULSES])
+        summary[OTX_JSON_NUM_PULSES] = len(response.get(OTX_JSON_PULSE_INFO, {}).get(OTX_JSON_PULSES, []))
 
         return action_result.set_status(phantom.APP_SUCCESS)
 
@@ -306,7 +290,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
         action_result.add_data(response)
 
         summary = action_result.update_summary({})
-        summary[OTX_JSON_NUM_PULSES] = len(response[OTX_JSON_PULSE_INFO][OTX_JSON_PULSES])
+        summary[OTX_JSON_NUM_PULSES] = len(response.get(OTX_JSON_PULSE_INFO, {}).get(OTX_JSON_PULSES, []))
 
         return action_result.set_status(phantom.APP_SUCCESS)
 
@@ -326,7 +310,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
         action_result.add_data(response)
 
         summary = action_result.update_summary({})
-        summary[OTX_JSON_NUM_PULSES] = len(response[OTX_JSON_PULSE_INFO][OTX_JSON_PULSES])
+        summary[OTX_JSON_NUM_PULSES] = len(response.get(OTX_JSON_PULSE_INFO, {}).get(OTX_JSON_PULSES, []))
 
         return action_result.set_status(phantom.APP_SUCCESS)
 
@@ -346,7 +330,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
         action_result.add_data(response)
 
         summary = action_result.update_summary({})
-        summary[OTX_JSON_NUM_INDICATORS] = len(response[OTX_JSON_INDICATORS])
+        summary[OTX_JSON_NUM_INDICATORS] = len(response.get(OTX_JSON_INDICATORS, []))
 
         return action_result.set_status(phantom.APP_SUCCESS)
 
@@ -381,25 +365,18 @@ class AlienvaultOtxv2Connector(BaseConnector):
 
     def initialize(self):
 
-        # Load the state in initialize, use it to store data
-        # that needs to be accessed across actions
+        # Load the state in initialize
         self._state = self.load_state()
+        if not isinstance(self._state, dict):
+            self.debug_print("Resetting the state file with the default format")
+            self._state = {"app_version": self.get_app_json().get("app_version")}
 
         # get the asset config
         config = self.get_config()
 
-        """
-        # Access values in asset config by the name
-
-        # Required values can be accessed directly
-        required_config_name = config['required_config_name']
-
-        # Optional values should use the .get() function
-        optional_config_name = config.get('optional_config_name')
-        """
-
         self._base_url = OTX_BASE_URL
         self._api_key = config.get(OTX_JSON_API_KEY)
+        self._verify = config.get('verify_server_cert', True)
 
         self.set_validator('ipv6', self._is_ip)
 
@@ -414,8 +391,10 @@ class AlienvaultOtxv2Connector(BaseConnector):
 
 if __name__ == '__main__':
 
-    import pudb
     import argparse
+    import sys
+
+    import pudb
 
     pudb.set_trace()
 
@@ -424,12 +403,14 @@ if __name__ == '__main__':
     argparser.add_argument('input_test_json', help='Input Test JSON file')
     argparser.add_argument('-u', '--username', help='username', required=False)
     argparser.add_argument('-p', '--password', help='password', required=False)
+    argparser.add_argument('-v', '--verify', action='store_true', help='verify', required=False, default=False)
 
     args = argparser.parse_args()
     session_id = None
 
     username = args.username
     password = args.password
+    verify = args.verify
 
     if username is not None and password is None:
 
@@ -441,7 +422,7 @@ if __name__ == '__main__':
         login_url = "{}login".format(BaseConnector._get_phantom_base_url())
         try:
             print("Accessing the Login page")
-            r = requests.get(login_url, verify=False)
+            r = requests.get(login_url, verify=verify, timeout=OTX_DEFAULT_REQUEST_TIMEOUT)
             csrftoken = r.cookies['csrftoken']
 
             data = dict()
@@ -454,11 +435,11 @@ if __name__ == '__main__':
             headers['Referer'] = login_url
 
             print("Logging into Platform to get the session id")
-            r2 = requests.post(login_url, verify=False, data=data, headers=headers)
+            r2 = requests.post(login_url, verify=verify, data=data, headers=headers, timeout=OTX_DEFAULT_REQUEST_TIMEOUT)
             session_id = r2.cookies['sessionid']
         except Exception as e:
             print("Unable to get session id from the platfrom. Error: {}".format(str(e)))
-            exit(1)
+            sys.exit(1)
 
     with open(args.input_test_json) as f:
         in_json = f.read()
@@ -475,4 +456,4 @@ if __name__ == '__main__':
         ret_val = connector._handle_action(json.dumps(in_json), None)
         print(json.dumps(json.loads(ret_val), indent=4))
 
-    exit(0)
+    sys.exit(0)
