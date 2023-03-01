@@ -15,12 +15,12 @@
 #
 #
 # Status/Progress Messages
-OTX_ERR_MSG_UNAVAILABLE = "Error message unavailable. Please check the asset configuration and|or the action parameters."
+OTX_ERROR_MESSAGE_UNAVAILABLE = "Error message unavailable. Please check the asset configuration and|or the action parameters."
 OTX_SUCC_CONNECTIVITY_TEST = "Test connectivity passed"
-OTX_ERR_CONNECTIVITY_TEST = "Test connectivity failed"
-OTX_ERR_MALFORMED_DOMAIN = "Malformed domain"
-OTX_ERR_MALFORMED_IP = "Malformed IP address"
-OTX_ERR_NO_PULSE_FOUND = "No pulse found"
+OTX_ERROR_CONNECTIVITY_TEST = "Test connectivity failed"
+OTX_ERROR_MALFORMED_DOMAIN = "Malformed domain"
+OTX_ERROR_MALFORMED_IP = "Malformed IP address"
+OTX_ERROR_NO_PULSE_FOUND = "No pulse found"
 
 # JSON keys used in params, result, summary etc.
 OTX_JSON_API_KEY = "api_key"  # pragma: allowlist secret

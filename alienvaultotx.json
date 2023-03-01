@@ -997,6 +997,7 @@
             "action": "ip reputation",
             "identifier": "ip_reputation",
             "description": "Queries for IP reputation information",
+            "verbose": "The valid response_type values for IPv4 are general, reputation, geo, malware, url_list, and passive_dns. For IPv6, http_scans is also considered a valid response_type along with the ones mentioned for IPv4.",
             "type": "investigate",
             "read_only": true,
             "parameters": {

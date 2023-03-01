@@ -51,7 +51,8 @@ class AlienvaultOtxv2Connector(BaseConnector):
         """
         if response_type_input not in response_type_list:
             return action_result.set_status(
-                phantom.APP_ERROR, "Please provide a valid response type from the given list: {}".format(", ".join(x for x in response_type_list)))
+                phantom.APP_ERROR, "Please provide a valid response type from the given list: {}".format(
+                ", ".join(x for x in response_type_list)))
 
         return action_result.set_status(phantom.APP_SUCCESS)
 
@@ -63,22 +64,22 @@ class AlienvaultOtxv2Connector(BaseConnector):
 
         self.error_print("Traceback: ", e)
         error_code = None
-        error_msg = OTX_ERR_MSG_UNAVAILABLE
+        error_message = OTX_ERROR_MESSAGE_UNAVAILABLE
 
         try:
             if hasattr(e, "args"):
                 if len(e.args) > 1:
                     error_code = e.args[0]
-                    error_msg = e.args[1]
+                    error_message = e.args[1]
                 elif len(e.args) == 1:
-                    error_msg = e.args[0]
+                    error_message = e.args[0]
         except Exception as e:
             self.error_print("Error occurred while retrieving exception information", e)
 
         if not error_code:
-            error_text = "Error Message: {}".format(error_msg)
+            error_text = "Error Message: {}".format(error_message)
         else:
-            error_text = "Error Code: {}. Error Message: {}".format(error_code, error_msg)
+            error_text = "Error Code: {}. Error Message: {}".format(error_code, error_message)
 
         return error_text
 
@@ -127,15 +128,15 @@ class AlienvaultOtxv2Connector(BaseConnector):
             resp_json_unformatted = r.json()
             resp_json = json.loads(json.dumps(resp_json_unformatted).replace('\\u0000', '\\\\u0000'))
         except Exception as e:
-            error_msg = self._get_error_message_from_exception(e)
-            return RetVal(action_result.set_status(phantom.APP_ERROR, "Unable to parse JSON response. Error: {0}".format(error_msg)), None)
+            error_message = self._get_error_message_from_exception(e)
+            return RetVal(action_result.set_status(phantom.APP_ERROR, "Unable to parse JSON response. Error: {0}".format(error_message)), None)
 
         # Please specify the status codes here
         if 200 <= r.status_code < 399:
             return RetVal(phantom.APP_SUCCESS, resp_json)
 
         if self.get_action_identifier() == OTX_GET_PULSES_ACTION and r.status_code == 404:
-            action_result.set_status(phantom.APP_SUCCESS, OTX_ERR_NO_PULSE_FOUND)
+            action_result.set_status(phantom.APP_SUCCESS, OTX_ERROR_NO_PULSE_FOUND)
             return RetVal(phantom.APP_ERROR, None)
 
         # You should process the error returned in the json
@@ -199,8 +200,8 @@ class AlienvaultOtxv2Connector(BaseConnector):
                             **kwargs)
             self.save_progress("Retrieving Details")
         except Exception as e:
-            error_msg = self._get_error_message_from_exception(e)
-            return RetVal(action_result.set_status(phantom.APP_ERROR, "Error Connecting to server. Details: {0}".format(error_msg)), resp_json)
+            error_message = self._get_error_message_from_exception(e)
+            return RetVal(action_result.set_status(phantom.APP_ERROR, "Error Connecting to server. Details: {0}".format(error_message)), resp_json)
 
         return self._process_response(r, action_result)
 
@@ -213,7 +214,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
         ret_val, _ = self._make_rest_call(OTX_TEST_CONNECTIVITY_ENDPOINT, action_result)
 
         if phantom.is_fail(ret_val):
-            self.save_progress(OTX_ERR_CONNECTIVITY_TEST)
+            self.save_progress(OTX_ERROR_CONNECTIVITY_TEST)
             return action_result.get_status()
 
         # Return success
@@ -235,7 +236,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
         if utils.is_domain(domain):
             ret_val, response = self._make_rest_call(OTX_DOMAIN_REPUTATION_ENDPOINT.format(domain, response_type), action_result)
         else:
-            return action_result.set_status(phantom.APP_ERROR, OTX_ERR_MALFORMED_DOMAIN)
+            return action_result.set_status(phantom.APP_ERROR, OTX_ERROR_MALFORMED_DOMAIN)
 
         if phantom.is_fail(ret_val):
             return action_result.get_status()
@@ -283,7 +284,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
             ret_val, response = self._make_rest_call(OTX_IPV6_REPUTATION_ENDPOINT.format(
                 ip, param.get("response_type", "general")), action_result)
         else:
-            return action_result.set_status(phantom.APP_ERROR, OTX_ERR_MALFORMED_IP)
+            return action_result.set_status(phantom.APP_ERROR, OTX_ERROR_MALFORMED_IP)
 
         if phantom.is_fail(ret_val):
             return action_result.get_status()
