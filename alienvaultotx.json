@@ -14,16 +14,16 @@
             "name": "Ionut Ciubotarasu"
         }
     ],
-    "license": "Copyright (c) 2019-2022 Splunk Inc.",
-    "app_version": "2.2.0",
+    "license": "Copyright (c) 2019-2023 Splunk Inc.",
+    "app_version": "2.3.0",
     "utctime_updated": "2022-01-28T19:25:31.000000Z",
     "package_name": "phantom_alienvaultotx",
     "main_module": "alienvaultotx_connector.py",
-    "min_phantom_version": "5.3.3",
+    "min_phantom_version": "5.4.0",
     "python_version": "3",
     "fips_compliant": true,
     "latest_tested_versions": [
-        "Cloud, API v1 otx.alienvault.com/api/v1/, September 28 2022"
+        "Cloud, API v1 otx.alienvault.com/api/v1/, March 10 2023"
     ],
     "app_wizard_version": "1.0.0",
     "configuration": {
@@ -62,6 +62,21 @@
                         "url"
                     ],
                     "order": 0
+                },
+                "response_type": {
+                    "description": "The type of analysis to return",
+                    "data_type": "string",
+                    "order": 1,
+                    "default": "general",
+                    "value_list": [
+                        "general",
+                        "geo",
+                        "malware",
+                        "url_list",
+                        "passive_dns",
+                        "whois",
+                        "http_scans"
+                    ]
                 }
             },
             "output": [
@@ -82,6 +97,13 @@
                     "contains": [
                         "domain",
                         "url"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.response_type",
+                    "data_type": "string",
+                    "example_values": [
+                        "general"
                     ]
                 },
                 {
@@ -988,6 +1010,21 @@
                         "ipv6"
                     ],
                     "order": 0
+                },
+                "response_type": {
+                    "description": "The type of analysis to return",
+                    "data_type": "string",
+                    "order": 1,
+                    "default": "general",
+                    "value_list": [
+                        "general",
+                        "reputation",
+                        "geo",
+                        "malware",
+                        "url_list",
+                        "passive_dns",
+                        "http_scans"
+                    ]
                 }
             },
             "output": [
@@ -1008,6 +1045,13 @@
                     "contains": [
                         "ip",
                         "ipv6"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.response_type",
+                    "data_type": "string",
+                    "example_values": [
+                        "general"
                     ]
                 },
                 {
@@ -2094,6 +2138,16 @@
                         "sha256"
                     ],
                     "order": 0
+                },
+                "response_type": {
+                    "description": "The type of analysis to return",
+                    "data_type": "string",
+                    "order": 1,
+                    "default": "general",
+                    "value_list": [
+                        "general",
+                        "analysis"
+                    ]
                 }
             },
             "output": [
@@ -2116,6 +2170,13 @@
                         "sha1",
                         "md5",
                         "sha256"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.response_type",
+                    "data_type": "string",
+                    "example_values": [
+                        "general"
                     ]
                 },
                 {
@@ -2998,6 +3059,16 @@
                         "url"
                     ],
                     "order": 0
+                },
+                "response_type": {
+                    "description": "The type of analysis to return",
+                    "data_type": "string",
+                    "order": 1,
+                    "default": "general",
+                    "value_list": [
+                        "general",
+                        "url_list"
+                    ]
                 }
             },
             "output": [
@@ -3017,6 +3088,13 @@
                     ],
                     "contains": [
                         "url"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.response_type",
+                    "data_type": "string",
+                    "example_values": [
+                        "general"
                     ]
                 },
                 {
@@ -4043,7 +4121,7 @@
             },
             {
                 "module": "certifi",
-                "input_file": "wheels/py3/certifi-2022.9.24-py3-none-any.whl"
+                "input_file": "wheels/py3/certifi-2022.12.7-py3-none-any.whl"
             },
             {
                 "module": "chardet",
@@ -4063,7 +4141,39 @@
             },
             {
                 "module": "urllib3",
-                "input_file": "wheels/shared/urllib3-1.26.12-py2.py3-none-any.whl"
+                "input_file": "wheels/shared/urllib3-1.26.14-py2.py3-none-any.whl"
+            }
+        ]
+    },
+    "pip39_dependencies": {
+        "wheel": [
+            {
+                "module": "beautifulsoup4",
+                "input_file": "wheels/py3/beautifulsoup4-4.9.1-py3-none-any.whl"
+            },
+            {
+                "module": "certifi",
+                "input_file": "wheels/py3/certifi-2022.12.7-py3-none-any.whl"
+            },
+            {
+                "module": "chardet",
+                "input_file": "wheels/shared/chardet-3.0.4-py2.py3-none-any.whl"
+            },
+            {
+                "module": "idna",
+                "input_file": "wheels/shared/idna-2.10-py2.py3-none-any.whl"
+            },
+            {
+                "module": "requests",
+                "input_file": "wheels/shared/requests-2.25.0-py2.py3-none-any.whl"
+            },
+            {
+                "module": "soupsieve",
+                "input_file": "wheels/py3/soupsieve-2.4-py3-none-any.whl"
+            },
+            {
+                "module": "urllib3",
+                "input_file": "wheels/shared/urllib3-1.26.14-py2.py3-none-any.whl"
             }
         ]
     }

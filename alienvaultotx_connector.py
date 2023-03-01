@@ -1,6 +1,6 @@
 # File: alienvaultotx_connector.py
 #
-# Copyright (c) 2019-2022 Splunk Inc.
+# Copyright (c) 2019-2023 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -45,6 +45,15 @@ class AlienvaultOtxv2Connector(BaseConnector):
         # Do note that the app json defines the asset config, so please
         # modify this as you deem fit.
         self._base_url = None
+
+    def _validate_response_type(self, action_result, response_type_input, response_type_list):
+        """This method validates the input provided by the user in response_type in the action
+        """
+        if response_type_input not in response_type_list:
+            return action_result.set_status(
+                phantom.APP_ERROR, "Please provide a valid response type from the given list: {}".format(", ".join(x for x in response_type_list)))
+
+        return action_result.set_status(phantom.APP_SUCCESS)
 
     def _get_error_message_from_exception(self, e):
         """ This method is used to get appropriate error message from the exception.
@@ -195,7 +204,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
 
         return self._process_response(r, action_result)
 
-    def _handle_test_connectivity(self, param):
+    def _handle_test_connectivity(self, param, action_id):
 
         # Add an action result object to self (BaseConnector) to represent the action for this param
         action_result = self.add_action_result(ActionResult(dict(param)))
@@ -211,16 +220,20 @@ class AlienvaultOtxv2Connector(BaseConnector):
         self.save_progress(OTX_SUCC_CONNECTIVITY_TEST)
         return action_result.set_status(phantom.APP_SUCCESS)
 
-    def _handle_domain_reputation(self, param):
+    def _handle_domain_reputation(self, param, action_id):
 
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.save_progress("In action handler for: {0}".format(action_id))
         action_result = self.add_action_result(ActionResult(dict(param)))
 
         domain = param[OTX_JSON_DOMAIN]
+        response_type = param.get("response_type", "general")
+        ret_val = self._validate_response_type(action_result, response_type, OTX_RESPONSE_TYPE_DICT[action_id])
+        if phantom.is_fail(ret_val):
+            return action_result.get_status()
 
         # Check if domain is valid
         if utils.is_domain(domain):
-            ret_val, response = self._make_rest_call(OTX_DOMAIN_REPUTATION_ENDPOINT.format(domain), action_result)
+            ret_val, response = self._make_rest_call(OTX_DOMAIN_REPUTATION_ENDPOINT.format(domain, response_type), action_result)
         else:
             return action_result.set_status(phantom.APP_ERROR, OTX_ERR_MALFORMED_DOMAIN)
 
@@ -249,17 +262,26 @@ class AlienvaultOtxv2Connector(BaseConnector):
             return False
         return True
 
-    def _handle_ip_reputation(self, param):
+    def _handle_ip_reputation(self, param, action_id):
 
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.save_progress("In action handler for: {0}".format(action_id))
         action_result = self.add_action_result(ActionResult(dict(param)))
         ip = param[OTX_JSON_IP]
+        response_type = param.get("response_type", "general")
 
         # Check and redirect to valid call for the address type
         if utils.is_ip(ip):
-            ret_val, response = self._make_rest_call(OTX_IPV4_REPUTATION_ENDPOINT.format(ip), action_result)
+            ret_val = self._validate_response_type(action_result, response_type, OTX_RESPONSE_TYPE_DICT[f"{action_id}_ipv4"])
+            if phantom.is_fail(ret_val):
+                return action_result.get_status()
+            ret_val, response = self._make_rest_call(OTX_IPV4_REPUTATION_ENDPOINT.format(
+                ip, param.get("response_type", "general")), action_result)
         elif self._is_ip(ip):
-            ret_val, response = self._make_rest_call(OTX_IPV6_REPUTATION_ENDPOINT.format(ip), action_result)
+            ret_val = self._validate_response_type(action_result, response_type, OTX_RESPONSE_TYPE_DICT[f"{action_id}_ipv6"])
+            if phantom.is_fail(ret_val):
+                return action_result.get_status()
+            ret_val, response = self._make_rest_call(OTX_IPV6_REPUTATION_ENDPOINT.format(
+                ip, param.get("response_type", "general")), action_result)
         else:
             return action_result.set_status(phantom.APP_ERROR, OTX_ERR_MALFORMED_IP)
 
@@ -274,14 +296,18 @@ class AlienvaultOtxv2Connector(BaseConnector):
 
         return action_result.set_status(phantom.APP_SUCCESS)
 
-    def _handle_file_reputation(self, param):
+    def _handle_file_reputation(self, param, action_id):
 
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.save_progress("In action handler for: {0}".format(action_id))
         action_result = self.add_action_result(ActionResult(dict(param)))
         file_hash = param[OTX_JSON_HASH]
+        response_type = param.get("response_type", "general")
+        ret_val = self._validate_response_type(action_result, response_type, OTX_RESPONSE_TYPE_DICT[action_id])
+        if phantom.is_fail(ret_val):
+            return action_result.get_status()
 
         # make rest call
-        ret_val, response = self._make_rest_call(OTX_FILE_REPUTATION_ENDPOINT.format(file_hash), action_result)
+        ret_val, response = self._make_rest_call(OTX_FILE_REPUTATION_ENDPOINT.format(file_hash, response_type), action_result)
 
         if phantom.is_fail(ret_val):
             return action_result.get_status()
@@ -294,14 +320,18 @@ class AlienvaultOtxv2Connector(BaseConnector):
 
         return action_result.set_status(phantom.APP_SUCCESS)
 
-    def _handle_url_reputation(self, param):
+    def _handle_url_reputation(self, param, action_id):
 
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.save_progress("In action handler for: {0}".format(action_id))
         action_result = self.add_action_result(ActionResult(dict(param)))
         url = param[OTX_JSON_URL]
+        response_type = param.get("response_type", "general")
+        ret_val = self._validate_response_type(action_result, response_type, OTX_RESPONSE_TYPE_DICT[action_id])
+        if phantom.is_fail(ret_val):
+            return action_result.get_status()
 
         # make rest call
-        ret_val, response = self._make_rest_call(OTX_URL_REPUTATION_ENDPOINT.format(url), action_result)
+        ret_val, response = self._make_rest_call(OTX_URL_REPUTATION_ENDPOINT.format(url, response_type), action_result)
 
         if phantom.is_fail(ret_val):
             return action_result.get_status()
@@ -314,9 +344,9 @@ class AlienvaultOtxv2Connector(BaseConnector):
 
         return action_result.set_status(phantom.APP_SUCCESS)
 
-    def _handle_get_pulses(self, param):
+    def _handle_get_pulses(self, param, action_id):
 
-        self.save_progress("In action handler for: {0}".format(self.get_action_identifier()))
+        self.save_progress("In action handler for: {0}".format(action_id))
         action_result = self.add_action_result(ActionResult(dict(param)))
         pulse_id = param[OTX_JSON_PULSE_ID]
 
@@ -341,25 +371,25 @@ class AlienvaultOtxv2Connector(BaseConnector):
         # Get the action that we are supposed to execute for this App Run
         action_id = self.get_action_identifier()
 
-        self.debug_print("action_id", self.get_action_identifier())
+        self.debug_print("action_id", action_id)
 
         if action_id == OTX_TEST_CONNECTIVITY_ACTION:
-            ret_val = self._handle_test_connectivity(param)
+            ret_val = self._handle_test_connectivity(param, action_id)
 
         elif action_id == OTX_DOMAIN_REPUTATION_ACTION:
-            ret_val = self._handle_domain_reputation(param)
+            ret_val = self._handle_domain_reputation(param, action_id)
 
         elif action_id == OTX_IP_REPUTATION_ACTION:
-            ret_val = self._handle_ip_reputation(param)
+            ret_val = self._handle_ip_reputation(param, action_id)
 
         elif action_id == OTX_FILE_REPUTATION_ACTION:
-            ret_val = self._handle_file_reputation(param)
+            ret_val = self._handle_file_reputation(param, action_id)
 
         elif action_id == OTX_URL_REPUTATION_ACTION:
-            ret_val = self._handle_url_reputation(param)
+            ret_val = self._handle_url_reputation(param, action_id)
 
         elif action_id == OTX_GET_PULSES_ACTION:
-            ret_val = self._handle_get_pulses(param)
+            ret_val = self._handle_get_pulses(param, action_id)
 
         return ret_val
 
