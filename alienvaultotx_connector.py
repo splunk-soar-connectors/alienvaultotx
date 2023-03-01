@@ -51,8 +51,8 @@ class AlienvaultOtxv2Connector(BaseConnector):
         """
         if response_type_input not in response_type_list:
             return action_result.set_status(
-                phantom.APP_ERROR, "Please provide a valid response type from the given list: {}".format(
-                ", ".join(x for x in response_type_list)))
+                phantom.APP_ERROR,
+                "Please provide a valid response type from the given list: {}".format(", ".join(x for x in response_type_list)))
 
         return action_result.set_status(phantom.APP_SUCCESS)
 
@@ -201,7 +201,8 @@ class AlienvaultOtxv2Connector(BaseConnector):
             self.save_progress("Retrieving Details")
         except Exception as e:
             error_message = self._get_error_message_from_exception(e)
-            return RetVal(action_result.set_status(phantom.APP_ERROR, "Error Connecting to server. Details: {0}".format(error_message)), resp_json)
+            return RetVal(action_result.set_status(phantom.APP_ERROR, "Error Connecting to server. Details: {0}".format(
+                error_message)), resp_json)
 
         return self._process_response(r, action_result)
 
