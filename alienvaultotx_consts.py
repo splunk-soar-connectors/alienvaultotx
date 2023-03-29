@@ -36,8 +36,8 @@ OTX_JSON_NUM_PULSES = "num_pulses"
 OTX_JSON_NUM_INDICATORS = "num_indicators"
 OTX_RESPONSE_TYPE_DICT = {
     "domain_reputation": ["general", "geo", "malware", "url_list", "passive_dns", "whois", "http_scans"],
-    "ip_reputation_ipv4": ["general", "reputation", "geo", "malware", "url_list", "passive_dns"],
-    "ip_reputation_ipv6": ["general", "reputation", "geo", "malware", "url_list", "passive_dns", "http_scans"],
+    "ip_reputation_ipv4": ["general", "reputation", "geo", "malware", "url_list", "passive_dns", "http_scans"],
+    "ip_reputation_ipv6": ["general", "reputation", "geo", "malware", "url_list", "passive_dns"],
     "url_reputation": ["general", "url_list"],
     "file_reputation": ["general", "analysis"]
 }
