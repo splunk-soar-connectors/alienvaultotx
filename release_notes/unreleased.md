@@ -1,2 +1,2 @@
 **Unreleased**
-* Add support for 'response type' parameter in reputation actions [PAPP-28863]
+* Added support for 'response type' parameter in reputation actions [PAPP-28863]
