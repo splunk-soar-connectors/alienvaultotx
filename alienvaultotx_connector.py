@@ -52,7 +52,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
         if response_type_input not in response_type_list:
             return action_result.set_status(
                 phantom.APP_ERROR,
-                "Please provide a valid response type from the given list: {}".format(", ".join(x for x in response_type_list)))
+                "Please provide a valid value of 'response type' parameter from the given list: {}".format(", ".join(response_type_list)))
 
         return action_result.set_status(phantom.APP_SUCCESS)
 
@@ -228,7 +228,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
         action_result = self.add_action_result(ActionResult(dict(param)))
 
         domain = param[OTX_JSON_DOMAIN]
-        response_type = param.get("response_type", "general")
+        response_type = param.get(OTX_JSON_RESPONSE_TYPE, OTX_JSON_DEFAULT_RESPONSE)
         ret_val = self._validate_response_type(action_result, response_type, OTX_RESPONSE_TYPE_DICT[action_id])
         if phantom.is_fail(ret_val):
             return action_result.get_status()
@@ -269,7 +269,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
         self.save_progress("In action handler for: {0}".format(action_id))
         action_result = self.add_action_result(ActionResult(dict(param)))
         ip = param[OTX_JSON_IP]
-        response_type = param.get("response_type", "general")
+        response_type = param.get(OTX_JSON_RESPONSE_TYPE, OTX_JSON_DEFAULT_RESPONSE)
 
         # Check and redirect to valid call for the address type
         if utils.is_ip(ip):
@@ -277,13 +277,13 @@ class AlienvaultOtxv2Connector(BaseConnector):
             if phantom.is_fail(ret_val):
                 return action_result.get_status()
             ret_val, response = self._make_rest_call(OTX_IPV4_REPUTATION_ENDPOINT.format(
-                ip, param.get("response_type", "general")), action_result)
+                ip, param.get(OTX_JSON_RESPONSE_TYPE, OTX_JSON_DEFAULT_RESPONSE)), action_result)
         elif self._is_ip(ip):
             ret_val = self._validate_response_type(action_result, response_type, OTX_RESPONSE_TYPE_DICT[f"{action_id}_ipv6"])
             if phantom.is_fail(ret_val):
                 return action_result.get_status()
             ret_val, response = self._make_rest_call(OTX_IPV6_REPUTATION_ENDPOINT.format(
-                ip, param.get("response_type", "general")), action_result)
+                ip, param.get(OTX_JSON_RESPONSE_TYPE, OTX_JSON_DEFAULT_RESPONSE)), action_result)
         else:
             return action_result.set_status(phantom.APP_ERROR, OTX_ERROR_MALFORMED_IP)
 
@@ -303,7 +303,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
         self.save_progress("In action handler for: {0}".format(action_id))
         action_result = self.add_action_result(ActionResult(dict(param)))
         file_hash = param[OTX_JSON_HASH]
-        response_type = param.get("response_type", "general")
+        response_type = param.get(OTX_JSON_RESPONSE_TYPE, OTX_JSON_DEFAULT_RESPONSE)
         ret_val = self._validate_response_type(action_result, response_type, OTX_RESPONSE_TYPE_DICT[action_id])
         if phantom.is_fail(ret_val):
             return action_result.get_status()
@@ -327,7 +327,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
         self.save_progress("In action handler for: {0}".format(action_id))
         action_result = self.add_action_result(ActionResult(dict(param)))
         url = param[OTX_JSON_URL]
-        response_type = param.get("response_type", "general")
+        response_type = param.get(OTX_JSON_RESPONSE_TYPE, OTX_JSON_DEFAULT_RESPONSE)
         ret_val = self._validate_response_type(action_result, response_type, OTX_RESPONSE_TYPE_DICT[action_id])
         if phantom.is_fail(ret_val):
             return action_result.get_status()

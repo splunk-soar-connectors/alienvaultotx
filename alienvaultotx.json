@@ -456,14 +456,14 @@
                     "data_path": "action_result.data.*.passive_dns.*.hostname",
                     "data_type": "string",
                     "example_values": [
-                        "ar.rghost.net"
+                        "ar.test.net"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.passive_dns.*.indicator_link",
                     "data_type": "string",
                     "example_values": [
-                        "/indicator/hostname/ar.rghost.net"
+                        "/indicator/hostname/ar.test.net"
                     ]
                 },
                 {
@@ -547,6 +547,7 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.author.is_following",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -554,6 +555,7 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.author.is_subscribed",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -785,6 +787,7 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.locked",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -1297,21 +1300,21 @@
                     "data_path": "action_result.data.*.url_list.*.domain",
                     "data_type": "string",
                     "example_values": [
-                        "rghost.net"
+                        "test.net"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.url_list.*.encoded",
                     "data_type": "string",
                     "example_values": [
-                        "http%3A//rghost.net/download/54999299/e3938a44c9bddc709e770a01a70c4388640da827/"
+                        "http%3A//test.net/download/54999299/e3938a44c9bddc709e770a01a70c4388640da827/"
                     ]
                 },
                 {
                     "data_path": "action_result.data.*.url_list.*.hostname",
                     "data_type": "string",
                     "example_values": [
-                        "rghost.net"
+                        "test.net"
                     ]
                 },
                 {
@@ -1339,7 +1342,7 @@
                     "data_path": "action_result.data.*.url_list.*.url",
                     "data_type": "string",
                     "example_values": [
-                        "http://rghost.net/download/54999299/e3938a44c9bddc709e770a01a70c4388640da827/"
+                        "http://test.net/download/54999299/e3938a44c9bddc709e770a01a70c4388640da827/"
                     ]
                 },
                 {
@@ -1718,6 +1721,7 @@
                     "data_path": "action_result.data.*.has_next",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -1763,7 +1767,8 @@
                     "data_path": "action_result.data.*.paged",
                     "data_type": "boolean",
                     "example_values": [
-                        true
+                        true,
+                        false
                     ]
                 },
                 {
@@ -1903,6 +1908,7 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.author.is_following",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -1910,6 +1916,7 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.author.is_subscribed",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -2159,6 +2166,7 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.locked",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -2869,7 +2877,8 @@
                     "data_path": "action_result.data.*.analysis.has_S3",
                     "data_type": "boolean",
                     "example_values": [
-                        true
+                        true,
+                        false
                     ]
                 },
                 {
@@ -3165,6 +3174,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.signatures.*.alert",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -3386,6 +3396,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.ALYac.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -3411,6 +3422,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.AVG.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -3436,6 +3448,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.AVware.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -3461,6 +3474,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Ad-Aware.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -3486,6 +3500,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.AegisLab.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -3511,6 +3526,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.AhnLab-V3.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -3536,6 +3552,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Alibaba.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -3561,6 +3578,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Antiy-AVL.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -3586,6 +3604,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Arcabit.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -3611,7 +3630,8 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Avast.detected",
                     "data_type": "boolean",
                     "example_values": [
-                        true
+                        true,
+                        false
                     ]
                 },
                 {
@@ -3639,6 +3659,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Avira.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -3664,6 +3685,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Baidu-International.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -3689,7 +3711,8 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Baidu.detected",
                     "data_type": "boolean",
                     "example_values": [
-                        true
+                        true,
+                        false
                     ]
                 },
                 {
@@ -3717,6 +3740,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.BitDefender.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -3742,6 +3766,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Bkav.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -3767,6 +3792,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.CAT-QuickHeal.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -3792,6 +3818,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.CMC.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -3817,6 +3844,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.ClamAV.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -3842,6 +3870,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Comodo.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -3867,6 +3896,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Cyren.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -3892,6 +3922,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.DrWeb.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -3917,7 +3948,8 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.ESET-NOD32.detected",
                     "data_type": "boolean",
                     "example_values": [
-                        true
+                        true,
+                        false
                     ]
                 },
                 {
@@ -3945,6 +3977,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Emsisoft.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -3970,6 +4003,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.F-Prot.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -3995,6 +4029,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.F-Secure.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -4020,6 +4055,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Fortinet.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -4045,7 +4081,8 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.GData.detected",
                     "data_type": "boolean",
                     "example_values": [
-                        true
+                        true,
+                        false
                     ]
                 },
                 {
@@ -4073,6 +4110,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Ikarus.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -4098,6 +4136,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Jiangmin.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -4123,6 +4162,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.K7AntiVirus.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -4148,7 +4188,8 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.K7GW.detected",
                     "data_type": "boolean",
                     "example_values": [
-                        true
+                        true,
+                        false
                     ]
                 },
                 {
@@ -4176,7 +4217,8 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Kaspersky.detected",
                     "data_type": "boolean",
                     "example_values": [
-                        true
+                        true,
+                        false
                     ]
                 },
                 {
@@ -4204,6 +4246,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Kingsoft.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -4229,6 +4272,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Malwarebytes.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -4254,7 +4298,8 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.McAfee-GW-Edition.detected",
                     "data_type": "boolean",
                     "example_values": [
-                        true
+                        true,
+                        false
                     ]
                 },
                 {
@@ -4282,7 +4327,8 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.McAfee.detected",
                     "data_type": "boolean",
                     "example_values": [
-                        true
+                        true,
+                        false
                     ]
                 },
                 {
@@ -4310,6 +4356,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.MicroWorld-eScan.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -4335,6 +4382,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Microsoft.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -4360,6 +4408,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.NANO-Antivirus.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -4385,6 +4434,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Panda.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -4410,7 +4460,8 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Qihoo-360.detected",
                     "data_type": "boolean",
                     "example_values": [
-                        true
+                        true,
+                        false
                     ]
                 },
                 {
@@ -4438,7 +4489,8 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Rising.detected",
                     "data_type": "boolean",
                     "example_values": [
-                        true
+                        true,
+                        false
                     ]
                 },
                 {
@@ -4466,6 +4518,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.SUPERAntiSpyware.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -4491,6 +4544,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Sophos.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -4516,6 +4570,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Symantec.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -4541,6 +4596,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Tencent.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -4566,6 +4622,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.TheHacker.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -4591,6 +4648,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.TotalDefense.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -4616,6 +4674,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.TrendMicro-HouseCall.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -4641,6 +4700,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.TrendMicro.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -4666,6 +4726,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.VBA32.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -4691,6 +4752,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.VIPRE.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -4716,6 +4778,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.ViRobot.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -4741,6 +4804,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Yandex.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -4766,6 +4830,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Zillya.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -4791,6 +4856,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.Zoner.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -4816,6 +4882,7 @@
                     "data_path": "action_result.data.*.analysis.plugins.cuckoo.result.virustotal.scans.nProtect.detected",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -5370,6 +5437,7 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.author.is_following",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -5377,6 +5445,7 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.author.is_subscribed",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -5594,6 +5663,7 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.locked",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -6396,6 +6466,7 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.author.is_following",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -6403,6 +6474,7 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.author.is_subscribed",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -6574,6 +6646,7 @@
                     "data_path": "action_result.data.*.pulse_info.pulses.*.locked",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -7290,6 +7363,7 @@
                     "data_path": "action_result.data.*.author.is_following",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
@@ -7297,7 +7371,8 @@
                     "data_path": "action_result.data.*.author.is_subscribed",
                     "data_type": "boolean",
                     "example_values": [
-                        true
+                        true,
+                        false
                     ]
                 },
                 {
@@ -7353,6 +7428,7 @@
                     "data_path": "action_result.data.*.in_group",
                     "data_type": "boolean",
                     "example_values": [
+                        true,
                         false
                     ]
                 },
