@@ -196,7 +196,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
                             url,
                             headers=headers,
                             verify=self._verify,
-                            timeout=OTX_DEFAULT_REQUEST_TIMEOUT,
+                            timeout=OTX_DEFAULT_REQUEST_TIMEOUT_SECONDS,
                             **kwargs)
             self.save_progress("Retrieving Details")
         except Exception as e:
@@ -454,7 +454,7 @@ if __name__ == '__main__':
         login_url = "{}login".format(BaseConnector._get_phantom_base_url())
         try:
             print("Accessing the Login page")
-            r = requests.get(login_url, verify=verify, timeout=OTX_DEFAULT_REQUEST_TIMEOUT)
+            r = requests.get(login_url, verify=verify, timeout=OTX_DEFAULT_REQUEST_TIMEOUT_SECONDS)
             csrftoken = r.cookies['csrftoken']
 
             data = dict()
@@ -467,7 +467,7 @@ if __name__ == '__main__':
             headers['Referer'] = login_url
 
             print("Logging into Platform to get the session id")
-            r2 = requests.post(login_url, verify=verify, data=data, headers=headers, timeout=OTX_DEFAULT_REQUEST_TIMEOUT)
+            r2 = requests.post(login_url, verify=verify, data=data, headers=headers, timeout=OTX_DEFAULT_REQUEST_TIMEOUT_SECONDS)
             session_id = r2.cookies['sessionid']
         except Exception as e:
             print("Unable to get session id from the platfrom. Error: {}".format(str(e)))
