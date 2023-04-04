@@ -91,7 +91,7 @@ and limitations under the License.
 <div class="alienvaultotx-app" style="overflow: auto; width: 100%; height: 100%; padding-left:10px; padding-right:10px"> <!-- Main Div -->
   {% for result in results %} <!-- loop for each result -->
     {% if result.data %}
-      {% if result.param.response_type == "general" %}
+      {% if result.param.response_type == "general" or result.param.response_type == "reputation" %}
           <!-- File Details -->
           {% if result.data.pulse_info.count > 0 %}
             <h3 class="wf-h3-style">AlienVault OTX Pulses</h3>
@@ -299,26 +299,6 @@ and limitations under the License.
             <td>{{ data.detections.msdefender }}</td>
          </tr>
           {% endfor %}
-        </tbody>
-        </table>
-        {% endif %}
-      {% elif result.param.response_type == "reputation" %}
-        {% if result.data.reputation %}
-          <h3 class="wf-h3-style">AlienVault OTX reputation Data</h3>
-        {% else %}
-          <h3 class="wf-h3-style">No Reputation Data Found</h3>
-        {% endif %}
-        {% if result.data.reputation %}
-        <table class="wf-table-vertical">
-          <thead>
-            <tr>
-                <th>Reputation</th>
-            </tr>
-          </thead>
-        <tbody>
-          <tr>
-            <td>{{ result.data.reputation }}</td>
-         </tr>
         </tbody>
         </table>
         {% endif %}
