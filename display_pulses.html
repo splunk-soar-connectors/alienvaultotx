@@ -285,7 +285,7 @@ and limitations under the License.
                 <th>Avast</th>
                 <th>Avg</th>
                 <th>Clamav</th>
-                <th>Msdefender</th>
+                <th>MSDefender</th>
             </tr>
         </thead>
         <tbody>
@@ -335,9 +335,8 @@ and limitations under the License.
                 <th>Date</th>
                 <th>Hash</th>
                 <th>Avast</th>
-                <th>Avg</th>
                 <th>Clamav</th>
-                <th>Msdefender</th>
+                <th>MSDefender</th>
             </tr>
           </thead>
         <tbody>
@@ -345,7 +344,6 @@ and limitations under the License.
             <td>{{ result.data.analysis.datetime_int }}</td>
             <td>{{ result.data.analysis.hash }}</td>
             <td>{{ result.data.analysis.plugins.avast.results.detection }}</td>
-            <td>{{ result.data.analysis.plugins.avg.results.detection }}</td>
             <td>{{ result.data.analysis.plugins.clamav.results.detection }}</td>
             <td>{{ result.data.analysis.plugins.msdefender.results.detection }}</td>
          </tr>
