@@ -30,14 +30,25 @@ and limitations under the License.
   text-decoration:underline;
 }
 
-.alienvaultotx-app .wf-table-vertical {
-  width: initial;
+.alienvaultotx-app .wf-table-vertical  {
+  margin-right: 10px;
+  width: 100%;
+  border: 1px solid;
   font-size: 12px;
 }
 
-.alienvaultotx-app .wf-table-vertical td {
-  padding: 5px;
+.alienvaultotx-app .wf-table-vertical th {
+  text-align: center;
   border: 1px solid;
+  text-transform: uppercase;
+  font-weight: normal;
+  padding: 5px;
+}
+
+.alienvaultotx-app .wf-table-vertical td {
+  border: 1px solid;
+  padding: 5px;
+  padding-left: 4px;
 }
 
 .alienvaultotx-app .wf-table-horizontal  {
@@ -117,7 +128,7 @@ and limitations under the License.
                     <td>{{ pulse.created }}</td>
                   </tr>
                   </table>
-                  <br>
+                  <br>  
                 {% endif %}
               {% endfor %}
             </table>
@@ -127,130 +138,220 @@ and limitations under the License.
         {% else %}
           <h3 class="wf-h3-style">No DNS Data Found</h3>
         {% endif %}
-        <table class="wf-table-horizontal">
-          {% for dns in result.data.passive_dns %}
-            {% if result.data.passive_dns %}
-              <table class="wf-table-horizontal">
-              <tr><th colspan="2"><b>OTX Passive DNS: </b>{{ dns.address }}</th></tr>
+        {% if result.data.passive_dns %}
+          <table class="wf-table-vertical">
+            <thead>
               <tr>
-                <th><b>ASN</b></th>
-                <td>{{ dns.asn }}</td>
+                  <th>Hostname</th>
+                  <th>Query Type</th>
+                  <th>Address</th>
+                  <th>First Seen</th>
+                  <th>Last Seen</th>
+                  <th>ASN</th>
+                  <th>Country</th>
               </tr>
-              <tr>
-                <th><b>Hostname</b></th>
-                <td>{{ dns.hostname }}</td>
-              </tr>
-              <tr>
-                <th><b>Flag Title</b></th>
-                <td>{{ dns.flag_title }}</td>
-              </tr>
-              <tr>
-                <th><b>Record Type</b></th>
-                <td>{{ dns.record_type }}</td>
-              </tr>
-              <tr>
-                <th><b>Indicator Link</b></th>
-                <td>{{ dns.indicator_link }}</td>
-              </tr>
-              </table>
-              <br>
-            {% endif %}
-          {% endfor %}
-        </table>
+          </thead>
+          <tbody>
+            {% for dns in result.data.passive_dns %}
+            <tr>
+              <td>{{ dns.hostname }}</td>
+              <td>{{ dns.record_type }}</td>
+              <td>{{ dns.address }} </td>
+              <td>{{ dns.first }} </td>
+              <td>{{ dns.last }} </td>
+              <td>{{ dns.asn }} </td>
+              <td>{{ dns.flag_title }} </td>
+           </tr>
+            {% endfor %}
+          </tbody>
+          </table>
+        {% endif %}
       {% elif result.param.response_type == "whois" %}
         {% if result.data.count > 0 %}
           <h3 class="wf-h3-style">AlienVault OTX WhoIS Data</h3>
         {% else %}
           <h3 class="wf-h3-style">No WhoIS Data Found</h3>
         {% endif %}
-        <table class="wf-table-horizontal">
-          {% for record in result.data.data %}
-            {% if result.data.data %}
-              <table class="wf-table-horizontal">
-              <tr><th colspan="2"><b>OTX WhoIS DNS: </b>{{ record.value }}</th></tr>
-              <tr>
-                <th><b>Key</b></th>
-                <td>{{ record.key }}</td>
-              </tr>
-              <tr>
-                <th><b>Name</b></th>
-                <td>{{ record.name }}</td>
-              </tr>
-              </table>
-              <br>
-            {% endif %}
-          {% endfor %}
+        {% if result.data %}
+        <table class="wf-table-vertical">
+          <thead>
+            <tr>
+                <th>Name</th>
+                <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for data in result.data.data %}
+            <tr>
+              <td>{{ data.name }}</td>
+              <td>{{ data.value }}</td> 
+          </tr>
+            {% endfor %}
+          </tbody>
         </table>
+        {% endif %}
       {% elif result.param.response_type == "url_list" %}
         {% if result.data.limit > 0 %}
           <h3 class="wf-h3-style">AlienVault OTX URL Data</h3>
         {% else %}
           <h3 class="wf-h3-style">No URL Data Found</h3>
         {% endif %}
-        <table class="wf-table-horizontal">
-          {% for record in result.data.url_list %}
-            {% if result.data.url_list %}
-              <table class="wf-table-horizontal">
-              <tr><th colspan="2"><b>OTX URL: </b>{{ record.url }}</th></tr>
-              <tr>
-                <th><b>Date</b></th>
-                <td>{{ record.date }}</td>
-              </tr>
-              <tr>
-                <th><b>Domain</b></th>
-                <td>{{ record.domain }}</td>
-              </tr>
-              </table>
-              <br>
-          {% endif %}
-        {% endfor %}
-      </table>
+        {% if result.data.url_list %}
+        <table class="wf-table-vertical">
+          <thead>
+            <tr>
+                <th>Date</th>
+                <th>URL</th>
+                <th>Hostname</th>
+                <th>Server Response</th>
+                <th>IP Address</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for url in result.data.url_list %}
+          <tr>
+            <td>{{ url.date }}</td>
+            <td>{{ url.url }}</td>
+            <td>{{ url.hostname }} </td>
+            <td>{{ url.httpcode }} </td>
+            <td>{{ url.result.urlworker.ip }}  </td>  
+         </tr>
+          {% endfor %}
+        </tbody>
+        </table>
+        {% endif %}
       {% elif result.param.response_type == "geo" %}
-        <h3 class="wf-h3-style">AlienVault OTX Geo Data</h3>
-        <table class="wf-table-horizontal">
-            {% if result.data %}
-              <table class="wf-table-horizontal">
-              <tr><th colspan="2"><b>OTX Geo ASN: </b>{{ result.data.asn }}</th></tr>
-              <tr>
-                <th><b>Country Name</b></th>
-                <td>{{ result.data.country_name }}</td>
-              </tr>
-              <tr>
-                <th><b>Latitude</b></th>
-                <td>{{ result.data.latitude }}</td>
-              </tr>
-              <tr>
-                <th><b>Longitude</b></th>
-                <td>{{ result.data.longitude }}</td>
-              </tr>
-              </table>
-              <br>
-          {% endif %}
-      </table>
+        {% if result.data %}
+          <h3 class="wf-h3-style">AlienVault OTX Geo Data</h3>
+        {% else %}
+          <h3 class="wf-h3-style">No Geo Data Found</h3>
+        {% endif %}
+        {% if result.data %}
+        <table class="wf-table-vertical">
+          <thead>
+            <tr>
+                <th>ASN</th>
+                <th>Country Name</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ result.data.asn }}</td>
+            <td>{{ result.data.flag_title }}</td>
+            <td>{{ result.data.latitude }} </td>
+            <td>{{ result.data.longitude }} </td>
+          </tr>
+        </tbody>
+        </table>
+        {% endif %}
       {% elif result.param.response_type == "http_scans" %}
         {% if result.data.count > 0 %}
           <h3 class="wf-h3-style">AlienVault OTX HTTP Data</h3>
         {% else %}
           <h3 class="wf-h3-style">No HTTP Data Found</h3>
         {% endif %}
-        <table class="wf-table-horizontal">
-          {% for record in result.data.data %}
-            {% if result.data.data %}
-              <table class="wf-table-horizontal">
-              <tr><th colspan="2"><b>OTX WhoIS DNS: </b>{{ record.name }}</th></tr>
-              <tr>
-                <th><b>Key</b></th>
-                <td>{{ record.key }}</td>
-              </tr>
-              <tr>
-                <th><b>Value</b></th>
-                <td>{{ record.value }}</td>
-              </tr>
-              </table>
-              <br>
-            {% endif %}
+        {% if result.data.data %}
+        <table class="wf-table-vertical">
+          <thead>
+            <tr>
+                <th>Record</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for data in result.data.data %}
+          <tr>
+            <td>{{ data.name }}</td>
+            <td>{{ data.value }}</td>
+         </tr>
           {% endfor %}
+        </tbody>
         </table>
+        {% endif %}
+      {% elif result.param.response_type == "malware" %}
+        {% if result.data.count > 0 %}
+          <h3 class="wf-h3-style">AlienVault OTX Malware Data</h3>
+        {% else %}
+          <h3 class="wf-h3-style">No Malware Data Found</h3>
+        {% endif %}
+        {% if result.data.data %}
+        <table class="wf-table-vertical">
+          <thead>
+            <tr>
+                <th>Date</th>
+                <th>Hash</th>
+                <th>Avast</th>
+                <th>Avg</th>
+                <th>Clamav</th>
+                <th>Msdefender</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for data in result.data.data %}
+          <tr>
+            <td>{{ data.date }}</td>
+            <td>{{ data.hash }}</td>
+            <td>{{ data.detections.avast }}</td>
+            <td>{{ data.detections.avg }}</td>
+            <td>{{ data.detections.clamav }}</td>
+            <td>{{ data.detections.msdefender }}</td>
+         </tr>
+          {% endfor %}
+        </tbody>
+        </table>
+        {% endif %}
+      {% elif result.param.response_type == "reputation" %}
+        {% if result.data.reputation %}
+          <h3 class="wf-h3-style">AlienVault OTX reputation Data</h3>
+        {% else %}
+          <h3 class="wf-h3-style">No Reputation Data Found</h3>
+        {% endif %}
+        {% if result.data.reputation %}
+        <table class="wf-table-vertical">
+          <thead>
+            <tr>
+                <th>Reputation</th>
+            </tr>
+          </thead>
+        <tbody>
+          <tr>
+            <td>{{ result.data.reputation }}</td>
+         </tr>
+        </tbody>
+        </table>
+        {% endif %}
+      {% elif result.param.response_type == "analysis" %}
+        {% if result.data %}
+          <h3 class="wf-h3-style">AlienVault OTX analysis Data</h3>
+        {% else %}
+          <h3 class="wf-h3-style">No analysis Data Found</h3>
+        {% endif %}
+        {% if result.data %}
+        <table class="wf-table-vertical">
+          <thead>
+            <tr>
+                <th>Date</th>
+                <th>Hash</th>
+                <th>Avast</th>
+                <th>Avg</th>
+                <th>Clamav</th>
+                <th>Msdefender</th>
+            </tr>
+          </thead>
+        <tbody>
+          <tr>
+            <td>{{ result.data.analysis.datetime_int }}</td>
+            <td>{{ result.data.analysis.hash }}</td>
+            <td>{{ result.data.analysis.plugins.avast.results.detection }}</td>
+            <td>{{ result.data.analysis.plugins.avg.results.detection }}</td>
+            <td>{{ result.data.analysis.plugins.clamav.results.detection }}</td>
+            <td>{{ result.data.analysis.plugins.msdefender.results.detection }}</td>
+         </tr>
+        </tbody>
+        </table>
+        {% endif %}
       {% endif %}
     {% else %}
       <h3 class="wf-h3-style">No Data Found</h3>

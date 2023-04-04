@@ -1387,7 +1387,7 @@
                     "data_path": "action_result.message",
                     "data_type": "string",
                     "example_values": [
-                        "Num pulses: 49"
+                        "Successfully retrieved information for Domain"
                     ]
                 },
                 {
@@ -2772,7 +2772,7 @@
                     "data_path": "action_result.message",
                     "data_type": "string",
                     "example_values": [
-                        "Num pulses: 5"
+                        "Successfully retrieved information for IP"
                     ]
                 },
                 {
@@ -6151,7 +6151,7 @@
                     "data_path": "action_result.message",
                     "data_type": "string",
                     "example_values": [
-                        "Num pulses: 1"
+                        "Successfully retrieved information for File"
                     ]
                 },
                 {
@@ -7270,7 +7270,7 @@
                     "data_path": "action_result.message",
                     "data_type": "string",
                     "example_values": [
-                        "Num pulses: 5"
+                        "Successfully retrieved information for URL"
                     ]
                 },
                 {

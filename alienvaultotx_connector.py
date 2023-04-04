@@ -248,7 +248,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
         summary = action_result.update_summary({})
         summary[OTX_JSON_NUM_PULSES] = len(response.get(OTX_JSON_PULSE_INFO, {}).get(OTX_JSON_PULSES, []))
 
-        return action_result.set_status(phantom.APP_SUCCESS)
+        return action_result.set_status(phantom.APP_SUCCESS, "Successfully retrieved information for Domain")
 
     def _is_ip(self, input_ip_address):
         """
@@ -296,7 +296,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
         summary = action_result.update_summary({})
         summary[OTX_JSON_NUM_PULSES] = len(response.get(OTX_JSON_PULSE_INFO, {}).get(OTX_JSON_PULSES, []))
 
-        return action_result.set_status(phantom.APP_SUCCESS)
+        return action_result.set_status(phantom.APP_SUCCESS, "Successfully retrieved information for IP")
 
     def _handle_file_reputation(self, param, action_id):
 
@@ -320,7 +320,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
         summary = action_result.update_summary({})
         summary[OTX_JSON_NUM_PULSES] = len(response.get(OTX_JSON_PULSE_INFO, {}).get(OTX_JSON_PULSES, []))
 
-        return action_result.set_status(phantom.APP_SUCCESS)
+        return action_result.set_status(phantom.APP_SUCCESS, "Successfully retrieved information for File")
 
     def _handle_url_reputation(self, param, action_id):
 
@@ -344,7 +344,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
         summary = action_result.update_summary({})
         summary[OTX_JSON_NUM_PULSES] = len(response.get(OTX_JSON_PULSE_INFO, {}).get(OTX_JSON_PULSES, []))
 
-        return action_result.set_status(phantom.APP_SUCCESS)
+        return action_result.set_status(phantom.APP_SUCCESS, "Successfully retrieved information for URL")
 
     def _handle_get_pulses(self, param, action_id):
 
