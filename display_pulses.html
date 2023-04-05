@@ -172,7 +172,7 @@ and limitations under the License.
         {% else %}
           <h3 class="wf-h3-style">No WhoIS Data Found</h3>
         {% endif %}
-        {% if result.data %}
+        {% if result.data.data %}
         <table class="wf-table-vertical">
           <thead>
             <tr>
@@ -191,7 +191,7 @@ and limitations under the License.
         </table>
         {% endif %}
       {% elif result.param.response_type == "url_list" %}
-        {% if result.data.limit > 0 %}
+        {% if result.data.url_list %}
           <h3 class="wf-h3-style">AlienVault OTX URL Data</h3>
         {% else %}
           <h3 class="wf-h3-style">No URL Data Found</h3>
@@ -304,9 +304,9 @@ and limitations under the License.
         {% endif %}
       {% elif result.param.response_type == "analysis" %}
         {% if result.data %}
-          <h3 class="wf-h3-style">AlienVault OTX analysis Data</h3>
+          <h3 class="wf-h3-style">AlienVault OTX Analysis Data</h3>
         {% else %}
-          <h3 class="wf-h3-style">No analysis Data Found</h3>
+          <h3 class="wf-h3-style">No Analysis Data Found</h3>
         {% endif %}
         {% if result.data %}
         <table class="wf-table-vertical">
