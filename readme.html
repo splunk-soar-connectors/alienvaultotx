@@ -1,5 +1,5 @@
 <!-- File: readme.html
-  Copyright (c) 2019-2022 Splunk Inc.
+  Copyright (c) 2019-2023 Splunk Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@ and limitations under the License.
 
 <br></br><b>OTX Pulses</b><br></br>
 
-Every action returns the OTX Pulses associated with the given domain, IP, file, or URL. <b>Pulses</b> provide you with a summary of the threat, a view into the software targeted, and the related indicators of compromise (IOCs) that can be used to detect the threats.
+Every action returns the OTX Pulses associated with the given domain, IP, file, or URL when the value of <b>response type</b> parameter is set as <b>general</b>. <b>Pulses</b> provide you with a summary of the threat, a view into the software targeted, and the related indicators of compromise (IOCs) that can be used to detect the threats.
 Pulses make it easier for you to see if your environment is exposed to a threat, if a threat is relevant to your organization, who is behind a threat, and what a threat may be targeting in your environment.
 <br></br>
 IOCs include:
@@ -32,3 +32,6 @@ IOCs include:
   <li>MUTEX name</li>
   <li>CVE number</li>
 </ul>
+
+
+NOTE: The actions would work according to the API behavior.
