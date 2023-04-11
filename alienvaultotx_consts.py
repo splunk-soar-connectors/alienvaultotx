@@ -1,6 +1,6 @@
 # File: alienvaultotx_consts.py
 #
-# Copyright (c) 2019-2022 Splunk Inc.
+# Copyright (c) 2019-2023 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,12 +15,12 @@
 #
 #
 # Status/Progress Messages
-OTX_ERR_MSG_UNAVAILABLE = "Error message unavailable. Please check the asset configuration and|or the action parameters."
+OTX_ERROR_MESSAGE_UNAVAILABLE = "Error message unavailable. Please check the asset configuration and|or the action parameters."
 OTX_SUCC_CONNECTIVITY_TEST = "Test connectivity passed"
-OTX_ERR_CONNECTIVITY_TEST = "Test connectivity failed"
-OTX_ERR_MALFORMED_DOMAIN = "Malformed domain"
-OTX_ERR_MALFORMED_IP = "Malformed IP address"
-OTX_ERR_NO_PULSE_FOUND = "No pulse found"
+OTX_ERROR_CONNECTIVITY_TEST = "Test connectivity failed"
+OTX_ERROR_MALFORMED_DOMAIN = "Malformed domain"
+OTX_ERROR_MALFORMED_IP = "Malformed IP address"
+OTX_ERROR_NO_PULSE_FOUND = "No pulse found"
 
 # JSON keys used in params, result, summary etc.
 OTX_JSON_API_KEY = "api_key"  # pragma: allowlist secret
@@ -31,18 +31,27 @@ OTX_JSON_URL = "url"
 OTX_JSON_PULSE_ID = "pulse_id"
 OTX_JSON_PULSE_INFO = "pulse_info"
 OTX_JSON_PULSES = "pulses"
+OTX_JSON_RESPONSE_TYPE = "response_type"
+OTX_JSON_DEFAULT_RESPONSE = "general"
 OTX_JSON_INDICATORS = "indicators"
 OTX_JSON_NUM_PULSES = "num_pulses"
 OTX_JSON_NUM_INDICATORS = "num_indicators"
+OTX_RESPONSE_TYPE_DICT = {
+    "domain_reputation": ["general", "geo", "malware", "url_list", "passive_dns", "whois", "http_scans"],
+    "ip_reputation_ipv4": ["general", "reputation", "geo", "malware", "url_list", "passive_dns", "http_scans"],
+    "ip_reputation_ipv6": ["general", "reputation", "geo", "malware", "url_list", "passive_dns"],
+    "url_reputation": ["general", "url_list"],
+    "file_reputation": ["general", "analysis"]
+}
 
 # Endpoints
 OTX_BASE_URL = "https://otx.alienvault.com"
 OTX_TEST_CONNECTIVITY_ENDPOINT = "/api/v1/users/me"
-OTX_DOMAIN_REPUTATION_ENDPOINT = "/api/v1/indicators/domain/{0}/general"
-OTX_IPV4_REPUTATION_ENDPOINT = "/api/v1/indicators/IPv4/{0}/general"
-OTX_IPV6_REPUTATION_ENDPOINT = "/api/v1/indicators/IPv6/{0}/general"
-OTX_FILE_REPUTATION_ENDPOINT = "/api/v1/indicators/file/{0}/general"
-OTX_URL_REPUTATION_ENDPOINT = "/api/v1/indicators/url/{0}/general"
+OTX_DOMAIN_REPUTATION_ENDPOINT = "/api/v1/indicators/domain/{0}/{1}"
+OTX_IPV4_REPUTATION_ENDPOINT = "/api/v1/indicators/IPv4/{0}/{1}"
+OTX_IPV6_REPUTATION_ENDPOINT = "/api/v1/indicators/IPv6/{0}/{1}"
+OTX_FILE_REPUTATION_ENDPOINT = "/api/v1/indicators/file/{0}/{1}"
+OTX_URL_REPUTATION_ENDPOINT = "/api/v1/indicators/url/{0}/{1}"
 OTX_GET_PULSES_ENDPOINT = "/api/v1/pulses/{0}"
 
 # Action names
@@ -53,4 +62,4 @@ OTX_FILE_REPUTATION_ACTION = "file_reputation"
 OTX_URL_REPUTATION_ACTION = "url_reputation"
 OTX_GET_PULSES_ACTION = "get_pulses"
 
-OTX_DEFAULT_REQUEST_TIMEOUT = 30  # in seconds
+OTX_DEFAULT_REQUEST_TIMEOUT_SECONDS = 120
