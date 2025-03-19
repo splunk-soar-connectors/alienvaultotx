@@ -1,6 +1,6 @@
 # File: alienvaultotx_consts.py
 #
-# Copyright (c) 2019-2023 Splunk Inc.
+# Copyright (c) 2019-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ OTX_RESPONSE_TYPE_DICT = {
     "ip_reputation_ipv4": ["general", "reputation", "geo", "malware", "url_list", "passive_dns", "http_scans"],
     "ip_reputation_ipv6": ["general", "reputation", "geo", "malware", "url_list", "passive_dns"],
     "url_reputation": ["general", "url_list"],
-    "file_reputation": ["general", "analysis"]
+    "file_reputation": ["general", "analysis"],
 }
 
 # Endpoints
