@@ -1,7 +1,7 @@
 # AlienVault OTX
 
 Publisher: Splunk \
-Connector Version: 2.3.1 \
+Connector Version: 2.3.2 \
 Product Vendor: AlienVault \
 Product Name: AlienVault OTX \
 Minimum Product Version: 5.5.0
