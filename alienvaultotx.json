@@ -15,12 +15,15 @@
         }
     ],
     "license": "Copyright (c) 2019-2025 Splunk Inc.",
-    "app_version": "2.3.2",
-    "utctime_updated": "2025-04-14T20:29:36.817359Z",
+    "app_version": "2.3.3",
+    "utctime_updated": "2025-07-30T17:34:32.989733Z",
     "package_name": "phantom_alienvaultotx",
     "main_module": "alienvaultotx_connector.py",
     "min_phantom_version": "5.5.0",
-    "python_version": ["3.9", "3.13"],
+    "python_version": [
+        "3.9",
+        "3.13"
+    ],
     "fips_compliant": true,
     "latest_tested_versions": [
         "Cloud, API v1 otx.alienvault.com/api/v1/, March 31 2023"
