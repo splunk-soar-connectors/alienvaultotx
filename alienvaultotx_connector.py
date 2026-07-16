@@ -16,6 +16,7 @@
 #
 import ipaddress
 import json
+from urllib.parse import quote
 
 import phantom.app as phantom
 import phantom.utils as utils
@@ -334,7 +335,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
     def _handle_get_pulses(self, param, action_id):
         self.save_progress(f"In action handler for: {action_id}")
         action_result = self.add_action_result(ActionResult(dict(param)))
-        pulse_id = param[OTX_JSON_PULSE_ID]
+        pulse_id = quote(str(param[OTX_JSON_PULSE_ID]), safe="")
 
         # make rest call
         ret_val, response = self._make_rest_call(OTX_GET_PULSES_ENDPOINT.format(pulse_id), action_result)

@@ -1,2 +1,3 @@
 **Unreleased**
 * Remove beautifulsoup4 from requirements.txt
+* Encode pulse identifiers before inserting them into AlienVault OTX API paths.
