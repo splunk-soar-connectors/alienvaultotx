@@ -15,8 +15,8 @@
         }
     ],
     "license": "Copyright (c) 2019-2026 Splunk Inc.",
-    "app_version": "2.3.4",
-    "utctime_updated": "2025-08-01T20:27:51.956439Z",
+    "app_version": "2.3.5",
+    "utctime_updated": "2026-07-17T14:58:10.537113Z",
     "package_name": "phantom_alienvaultotx",
     "main_module": "alienvaultotx_connector.py",
     "min_phantom_version": "5.5.0",
