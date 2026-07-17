@@ -1,9 +1,9 @@
 # AlienVault OTX
 
-Publisher: Splunk \
-Connector Version: 2.3.4 \
-Product Vendor: AlienVault \
-Product Name: AlienVault OTX \
+Publisher: Splunk <br>
+Connector Version: 2.3.4 <br>
+Product Vendor: AlienVault <br>
+Product Name: AlienVault OTX <br>
 Minimum Product Version: 5.5.0
 
 This app integrates with an instance of AlienVault OTX to perform investigative actions
@@ -41,18 +41,18 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 
 ### Supported Actions
 
-[test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity using supplied configuration \
-[domain reputation](#action-domain-reputation) - Queries for domain reputation information \
-[ip reputation](#action-ip-reputation) - Queries for IP reputation information \
-[file reputation](#action-file-reputation) - Queries for file reputation information \
-[url reputation](#action-url-reputation) - Queries for URL reputation information \
+[test connectivity](#action-test-connectivity) - Validate the asset configuration for connectivity using supplied configuration <br>
+[domain reputation](#action-domain-reputation) - Queries for domain reputation information <br>
+[ip reputation](#action-ip-reputation) - Queries for IP reputation information <br>
+[file reputation](#action-file-reputation) - Queries for file reputation information <br>
+[url reputation](#action-url-reputation) - Queries for URL reputation information <br>
 [get pulses](#action-get-pulses) - Get the pulse of the provided pulse ID
 
 ## action: 'test connectivity'
 
 Validate the asset configuration for connectivity using supplied configuration
 
-Type: **test** \
+Type: **test** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -67,7 +67,7 @@ No Output
 
 Queries for domain reputation information
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -276,7 +276,7 @@ summary.total_objects_successful | numeric | | 1 |
 
 Queries for IP reputation information
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 The valid response_type values for IPv4 are general, reputation, geo, malware, url_list, and passive_dns. For IPv6, http_scans is also considered a valid response_type along with the ones mentioned for IPv4.
@@ -486,7 +486,7 @@ summary.total_objects_successful | numeric | | 1 |
 
 Queries for file reputation information
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -999,7 +999,7 @@ summary.total_objects_successful | numeric | | 1 |
 
 Queries for URL reputation information
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -1172,7 +1172,7 @@ summary.total_objects_successful | numeric | | 1 |
 
 Get the pulse of the provided pulse ID
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -1225,7 +1225,7 @@ ______________________________________________________________________
 
 Auto-generated Splunk SOAR Connector documentation.
 
-Copyright 2025 Splunk Inc.
+Copyright 2026 Splunk Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

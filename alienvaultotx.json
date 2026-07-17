@@ -14,7 +14,7 @@
             "name": "Ionut Ciubotarasu"
         }
     ],
-    "license": "Copyright (c) 2019-2025 Splunk Inc.",
+    "license": "Copyright (c) 2019-2026 Splunk Inc.",
     "app_version": "2.3.4",
     "utctime_updated": "2025-08-01T20:27:51.956439Z",
     "package_name": "phantom_alienvaultotx",
@@ -7568,5 +7568,11 @@
             },
             "versions": "EQ(*)"
         }
-    ]
+    ],
+    "pip39_dependencies": {
+        "wheel": []
+    },
+    "pip313_dependencies": {
+        "wheel": []
+    }
 }
