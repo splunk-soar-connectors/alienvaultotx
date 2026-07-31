@@ -313,7 +313,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
     def _handle_url_reputation(self, param, action_id):
         self.save_progress(f"In action handler for: {action_id}")
         action_result = self.add_action_result(ActionResult(dict(param)))
-        url = param[OTX_JSON_URL]
+        url = quote(str(param[OTX_JSON_URL]), safe="")
         response_type = param.get(OTX_JSON_RESPONSE_TYPE, OTX_JSON_DEFAULT_RESPONSE)
         ret_val = self._validate_response_type(action_result, response_type, OTX_RESPONSE_TYPE_DICT[action_id])
         if phantom.is_fail(ret_val):
