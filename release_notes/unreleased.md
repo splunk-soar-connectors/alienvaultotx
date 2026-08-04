@@ -1,4 +1,1 @@
 **Unreleased**
-
-* Validate pulse identifiers before constructing API paths.
-* Encode URL reputation inputs as path segments.
