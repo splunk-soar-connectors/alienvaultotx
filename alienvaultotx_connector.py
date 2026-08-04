@@ -16,6 +16,7 @@
 #
 import ipaddress
 import json
+import re
 from urllib.parse import quote
 
 import phantom.app as phantom
@@ -312,7 +313,7 @@ class AlienvaultOtxv2Connector(BaseConnector):
     def _handle_url_reputation(self, param, action_id):
         self.save_progress(f"In action handler for: {action_id}")
         action_result = self.add_action_result(ActionResult(dict(param)))
-        url = param[OTX_JSON_URL]
+        url = quote(str(param[OTX_JSON_URL]), safe="")
         response_type = param.get(OTX_JSON_RESPONSE_TYPE, OTX_JSON_DEFAULT_RESPONSE)
         ret_val = self._validate_response_type(action_result, response_type, OTX_RESPONSE_TYPE_DICT[action_id])
         if phantom.is_fail(ret_val):
@@ -335,7 +336,10 @@ class AlienvaultOtxv2Connector(BaseConnector):
     def _handle_get_pulses(self, param, action_id):
         self.save_progress(f"In action handler for: {action_id}")
         action_result = self.add_action_result(ActionResult(dict(param)))
-        pulse_id = quote(str(param[OTX_JSON_PULSE_ID]), safe="")
+        pulse_id = str(param[OTX_JSON_PULSE_ID])
+        if not re.fullmatch(r"[0-9a-fA-F]{24}", pulse_id):
+            return action_result.set_status(phantom.APP_ERROR, "Invalid pulse_id: expected a 24-character hexadecimal identifier")
+        pulse_id = quote(pulse_id, safe="")
 
         # make rest call
         ret_val, response = self._make_rest_call(OTX_GET_PULSES_ENDPOINT.format(pulse_id), action_result)
